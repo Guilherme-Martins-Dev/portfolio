@@ -1,0 +1,35 @@
+# dependências
+node_modules/
+.pnpm-store/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# build e cobertura
+build/
+coverage/
+playwright-report/
+test-results/
+
+# ambiente: nunca versionar credenciais (usar .env.example)
+.env
+.env*.local
+.env.development
+.env.production
+!.env.example
+
+# Vercel
+.vercel
+
+# material privado de planejamento (fica só na máquina local)
+docs/planejamento-original.pdf
+
+# sistema e editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
