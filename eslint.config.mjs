@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Saída gerada pelo Velite (estudos de caso em MDX).
+    ".velite/**",
   ]),
 ]);
 
