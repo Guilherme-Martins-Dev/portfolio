@@ -2,7 +2,7 @@
 
 Portfólio web pessoal e bilíngue (PT/EN): uma plataforma de apresentação profissional que conta quem eu sou, o que já construí e o que estou construindo agora. Ela também serve de demonstração técnica, com 3D, animações orientadas à rolagem e código aberto.
 
-> **Fase atual:** pesquisa e planejamento (nov/2026). Ainda não há código do site neste repositório.
+> **Fase atual:** arquitetura (nov/2026). O projeto Next.js já está criado; as páginas do site ainda não.
 
 ## Decisões fechadas
 
@@ -37,6 +37,22 @@ Detalhes e justificativas em [docs/decisoes.md](docs/decisoes.md).
 | — | Versão visual da pesquisa (HTML) | [pesquisa.html](docs/pesquisa/pesquisa.html) |
 
 Também em [docs/](docs/): o [roadmap](docs/roadmap.md). As tasks são acompanhadas nas [issues](https://github.com/Guilherme-Martins-Dev/portfolio/issues), agrupadas por etapa nos milestones.
+
+## Como rodar
+
+Pré-requisitos: Node 24 (veja `.nvmrc`) e pnpm 10 (`corepack enable` usa a versão de `packageManager`).
+
+```bash
+pnpm install       # instala as dependências
+pnpm dev           # servidor de desenvolvimento em http://localhost:3000
+pnpm lint          # ESLint
+pnpm typecheck     # gera os tipos de rota (next typegen) e roda tsc --noEmit
+pnpm test          # placeholder até a issue #12 (Vitest + Playwright)
+pnpm build         # build de produção
+pnpm start         # serve o build
+```
+
+Variáveis de ambiente: copie `.env.example` para `.env.local` quando houver alguma. Nunca versione `.env*`.
 
 ## Licença
 
