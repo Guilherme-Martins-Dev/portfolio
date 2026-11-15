@@ -25,7 +25,7 @@ O levantamento está em [pesquisa/](pesquisa/) e as decisões em [decisoes.md](d
 | # | Task | Tipo | Depende de |
 |---|---|---|---|
 | #5 | MagicPath: corrigir âncoras e scrollytelling | manual | — |
-| #6 | Storyboard do scroll ([`docs/storyboard.md`](storyboard.md)) | agente | — |
+| #6 | Storyboard do scroll (`docs/storyboard.md`) | agente | — |
 
 ## 3. Arquitetura e design system
 
