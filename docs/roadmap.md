@@ -7,6 +7,8 @@ Cada task é uma [issue](https://github.com/Guilherme-Martins-Dev/portfolio/issu
 
 Uma issue só é liberada quando todas as listadas em "Depende de" estão fechadas, ou seja, quando os PRs delas foram mergeados.
 
+> **Exceção de hoje (15/11/2026):** a produção está liberada até as **8h de Brasília (11h UTC)**. Nesse período o agente pode trabalhar em mais de uma issue em sequência, sempre um PR por issue e respeitando o "Depende de". Depois das 8h volta o padrão acima: uma task por execução da routine.
+
 ## 0. Pesquisa ✅ (15/11/2026)
 
 O levantamento está em [pesquisa/](pesquisa/) e as decisões em [decisoes.md](decisoes.md).
