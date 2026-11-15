@@ -1,6 +1,11 @@
 # Roadmap
 
-Ordem herdada do planejamento original e ajustada pela pesquisa.
+Cada task é uma [issue](https://github.com/Guilherme-Martins-Dev/portfolio/issues) agrupada por etapa nos [milestones](https://github.com/Guilherme-Martins-Dev/portfolio/milestones).
+
+- **`agente`:** a routine "Portfólio: próxima task" pega uma por execução (seg a sex, 8h de Brasília) e abre um PR.
+- **`manual`:** dependem de você.
+
+Uma issue só é liberada quando todas as listadas em "Depende de" estão fechadas, ou seja, quando os PRs delas foram mergeados.
 
 ## 0. Pesquisa ✅ (15/11/2026)
 
@@ -8,41 +13,54 @@ O levantamento está em [pesquisa/](pesquisa/) e as decisões em [decisoes.md](d
 
 ## 1. Branding
 
-- [ ] Briefing da marca: personalidade, palavras-chave e público
-- [ ] Explorar 3 direções de símbolo (sem depender das iniciais; ver [05-marca](pesquisa/05-marca.md))
-- [ ] Versões horizontal, vertical e reduzida, além de favicon e avatar
-- [ ] Fechar tipografia (P05) e tokens de cor com contraste validado
-- [ ] Sessão de foto profissional
+| # | Task | Tipo | Depende de |
+|---|---|---|---|
+| #1 | Briefing e 3 direções de símbolo | manual | — |
+| #2 | Logomarca final e versões | manual | #1 |
+| #3 | Fechar a tipografia (P05) | manual | — |
+| #4 | Sessão de foto profissional | manual | — |
 
 ## 2. UI/UX e protótipo
 
-- [ ] Corrigir a estrutura do protótipo no MagicPath (ver [08-prototipacao](pesquisa/08-prototipacao.md))
-- [ ] Storyboard do scroll: cada seção como uma cena com entrada, permanência e saída
-- [ ] Versões desktop, tablet e celular, além da versão com movimento reduzido
+| # | Task | Tipo | Depende de |
+|---|---|---|---|
+| #5 | MagicPath: corrigir âncoras e scrollytelling | manual | — |
+| #6 | Storyboard do scroll (`docs/storyboard.md`) | agente | — |
 
-## 3. Design system
+## 3. Arquitetura e design system
 
-- [ ] Tokens em três camadas (primitivo → semântico → componente)
-- [ ] Componentes base: navegação, cards, linha do tempo, badges de status, seletor PT/EN
-- [ ] Estados (hover, foco, desabilitado) e foco visível
+| # | Task | Tipo | Depende de |
+|---|---|---|---|
+| #7 | Scaffold Next.js 16 + TS + Tailwind v4 | agente | — |
+| #8 | Design tokens, fontes, temas + shadcn/ui | agente | #7 |
+| #9 | next-intl (PT/EN) | agente | #7 |
+| #10 | Conteúdo tipado (Zod) + indicadores | agente | #7 |
+| #11 | Estudos de caso em MDX (Velite) | agente | #10 |
+| #12 | Vitest + Playwright + CI | agente | #7 |
+| #13 | Repositórios do GitHub com revalidação | agente | #10 |
 
-## 4. Arquitetura
+## 4. Desenvolvimento
 
-- [ ] `create-next-app` (Next 16) + TypeScript + Tailwind v4 + shadcn/ui
-- [ ] next-intl com `[locale]`, `proxy.ts` e `generateStaticParams`
-- [ ] Camada de conteúdo tipada (`content/*.ts` + Zod) e MDX (P02)
-- [ ] Busca dos repositórios do GitHub com revalidação (padrão já usado em um portfólio para cliente)
-- [ ] Vitest e Playwright configurados; CI no GitHub Actions
+| # | Task | Tipo | Depende de |
+|---|---|---|---|
+| #14 | Layout base e navegação por âncoras | agente | #8, #9 |
+| #15 | Home: Hero, Sobre e Indicadores | agente | #14, #10 |
+| #16 | Home: Projetos, Trajetória/Eventos, Contato | agente | #15 |
+| #17 | Páginas /projetos e /projetos/[slug] | agente | #11, #14 |
+| #18 | Páginas Sobre, Experiência, Eventos, Estudos, Contato | agente | #14, #10 |
+| #19 | Lenis + GSAP + movimento reduzido | agente | #14 |
+| #20 | Cena 3D do Hero (R3F) | agente | #15, #19 |
+| #21 | Coreografia de scroll da Home | agente | #16, #19, #6 |
+| #22 | Grafo de competências | agente | #20 |
+| #23 | Conteúdo real (textos, datas, links, imagens) | manual | #10 |
 
-## 5. Desenvolvimento
+## 5. Refinamento e publicação
 
-- [ ] Home (seis seções) com indicadores calculados dos dados
-- [ ] Páginas: Sobre, Experiência, Projetos e `/projetos/[slug]`, Eventos, Estudos, Contato
-- [ ] Cena 3D do Hero (R3F), carregada sob demanda, com fallback 2D
-- [ ] Coreografia do scroll (GSAP + ScrollTrigger + Lenis) e microinterações (Motion)
-
-## 6. Refinamento e publicação
-
-- [ ] SEO multilíngue (hreflang, sitemap, OG por idioma), acessibilidade e Core Web Vitals
-- [ ] Comprar o domínio (P01), configurar a Cloudflare (DNS only) e a Vercel
-- [ ] Publicar o repositório no GitHub (público) e fazer o deploy
+| # | Task | Tipo | Depende de |
+|---|---|---|---|
+| #24 | SEO multilíngue | agente | #17, #18 |
+| #25 | Auditoria de acessibilidade e Core Web Vitals | agente | #20, #21 |
+| #26 | Formulário de contato | agente | #18 |
+| #27 | Vercel Analytics + Speed Insights | agente | #14 |
+| #28 | Domínio + Cloudflare DNS + Vercel | manual | — |
+| #29 | Variáveis de ambiente na Vercel | manual | #28 |
