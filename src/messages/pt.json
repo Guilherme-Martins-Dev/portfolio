@@ -16,5 +16,8 @@
     "label": "Idioma",
     "pt": "Português",
     "en": "English"
+  },
+  "ThemeToggle": {
+    "label": "Alternar tema claro/escuro"
   }
 }

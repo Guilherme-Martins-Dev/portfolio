@@ -13,6 +13,8 @@ export const routing = defineRouting({
     "/eventos": { pt: "/eventos", en: "/events" },
     "/estudos": { pt: "/estudos", en: "/studies" },
     "/contato": { pt: "/contato", en: "/contact" },
+    // Página interna do design system (#8), fora do menu e do sitemap.
+    "/design": "/design",
   },
 });
 

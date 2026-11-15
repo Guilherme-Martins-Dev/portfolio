@@ -16,5 +16,8 @@
     "label": "Language",
     "pt": "Português",
     "en": "English"
+  },
+  "ThemeToggle": {
+    "label": "Toggle light/dark theme"
   }
 }
