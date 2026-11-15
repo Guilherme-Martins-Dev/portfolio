@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm content:check && next build",
+    "build": "pnpm content:build && pnpm content:check && next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit",
-    "test": "vitest run",
-    "content:check": "tsx scripts/check-content.ts"
+    "typecheck": "pnpm content:build && next typegen && tsc --noEmit",
+    "test": "pnpm content:build && vitest run",
+    "content:check": "tsx scripts/check-content.ts",
+    "content:build": "velite build --strict"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",
@@ -34,6 +35,7 @@
     "tailwindcss": "4.3.5",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
+    "velite": "0.4.0",
     "vitest": "5.1.0"
   },
   "engines": {
