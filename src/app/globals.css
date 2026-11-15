@@ -1,27 +1,152 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-/* Tokens provisórios do scaffold. Paleta, temas e tipografia definitivos entram na issue #8. */
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens em três camadas (docs/pesquisa/05-marca.md §5.4):
+ *   1. primitivos  → valores brutos da marca, em @theme (geram utilitários como bg-navy-950)
+ *   2. semânticos  → papel de cada cor por tema, em [data-theme="light"|"dark"]
+ *   3. componente  → o que os componentes consomem (@theme inline + tokens --btn-*, --card-*)
+ *
+ * Regra de contraste (D11): texto roxo no escuro usa #A66BE0 e texto ciano no claro usa #007A8C.
+ * O #7B2CBF fica só em brilhos/gradientes no escuro. O teste src/styles/contrast.test.ts lê
+ * este arquivo e falha se algum par texto/fundo ficar abaixo de 4,5:1.
+ */
+
+/* O tema vem do atributo data-theme no <html>, definido pelo script inline do layout. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* 1. Primitivos */
+@theme {
+  --color-navy-950: #0b132b;
+  --color-navy-900: #111c3d;
+  --color-navy-800: #1b2752;
+  --color-navy-700: #2a3a6e;
+  --color-cyan-400: #00e5ff;
+  --color-cyan-700: #007a8c;
+  --color-purple-600: #7b2cbf;
+  --color-purple-400: #a66be0;
+  --color-slate-50: #f5f7fb;
+  --color-slate-100: #eaeef6;
+  --color-slate-200: #d5dbe8;
+  --color-slate-300: #b4bdd1;
+  --color-slate-600: #4a5573;
+  --color-white: #ffffff;
+  --color-red-400: #ff8a80;
+  --color-red-700: #b3261e;
 }
 
+/* 2. Semânticos: tema claro (padrão sem JS) */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --background: var(--color-white);
+  --foreground: var(--color-navy-950);
+  --card: var(--color-slate-50);
+  --card-foreground: var(--color-navy-950);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-navy-950);
+  --muted: var(--color-slate-100);
+  --muted-foreground: var(--color-slate-600);
+  --primary: var(--color-cyan-400);
+  --primary-foreground: var(--color-navy-950);
+  --secondary: var(--color-slate-100);
+  --secondary-foreground: var(--color-navy-950);
+  --accent: var(--color-slate-100);
+  --accent-foreground: var(--color-navy-950);
+  --accent-text: var(--color-purple-600);
+  --link: var(--color-cyan-700);
+  --destructive: var(--color-red-700);
+  --destructive-foreground: var(--color-white);
+  --border: var(--color-slate-200);
+  --input: var(--color-slate-200);
+  --ring: var(--color-cyan-700);
+  --glow: var(--color-cyan-400);
+}
+
+/* 2. Semânticos: tema escuro */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: var(--color-navy-950);
+  --foreground: var(--color-slate-50);
+  --card: var(--color-navy-900);
+  --card-foreground: var(--color-slate-50);
+  --popover: var(--color-navy-900);
+  --popover-foreground: var(--color-slate-50);
+  --muted: var(--color-navy-800);
+  --muted-foreground: var(--color-slate-300);
+  --primary: var(--color-cyan-400);
+  --primary-foreground: var(--color-navy-950);
+  --secondary: var(--color-navy-800);
+  --secondary-foreground: var(--color-slate-50);
+  --accent: var(--color-navy-800);
+  --accent-foreground: var(--color-slate-50);
+  --accent-text: var(--color-purple-400);
+  --link: var(--color-cyan-400);
+  --destructive: var(--color-red-400);
+  --destructive-foreground: var(--color-navy-950);
+  --border: var(--color-navy-700);
+  --input: var(--color-navy-700);
+  --ring: var(--color-cyan-400);
+  --glow: var(--color-purple-600);
+}
+
+/* 3. Componente: o que o shadcn/ui e os componentes do projeto consomem */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-link: var(--link);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glow: var(--glow);
+
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  body {
+    @apply bg-background font-sans text-foreground;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
