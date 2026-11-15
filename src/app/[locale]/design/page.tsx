@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 // Página interna do design system: mostra tokens e componentes base nos dois temas.
-// Na issue #9 ela passa para app/[locale]/design. Não entra no menu nem no sitemap.
+// Não entra no menu nem no sitemap.
 export const metadata: Metadata = {
   title: "Design system",
   robots: { index: false, follow: false },
