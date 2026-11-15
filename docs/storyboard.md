@@ -63,6 +63,24 @@ A rede de nós do Hero é o fio condutor ([01-referencias](pesquisa/01-referenci
 
 Esses números são metas de projeto, não medições: a #25 confere em celular intermediário e ajusta.
 
+### 0.7 Orçamento por cena
+
+Mesmo com um canvas só, cada capítulo tem o seu teto. A linha "Orçamento" de cada capítulo detalha os números abaixo.
+
+| Cena | Draw calls (desktop / celular) | Nós ativos (desktop / celular) | DPR (desktop / celular) | Assets novos da cena | Peso máximo dos assets |
+|---|---|---|---|---|---|
+| 1. Hero | ≤ 3 / ≤ 2 (sem a camada de brilho) | ≤ 400 / ≤ 150 | `[1, 2]` / `[1, 1.5]` | Sprite de brilho; imagem de fallback | 32 KB (sprite) + 80 KB / 40 KB (fallback) |
+| 2. Sobre | ≤ 3 / 0 (rede escondida) | ≤ 400 / — | `[1, 1.5]` / — (a rede fica ao fundo a ~20% de opacidade, então não precisa de nitidez máxima) | Foto (`next/image`, AVIF/WebP) | ≤ 150 KB na maior largura servida |
+| 3. Indicadores | 0 (canvas parado) | — | — | Nenhum | 0 |
+| 4. Projetos | 0 (CSS 3D, sem WebGL) | — | — | Até 4 capas (`next/image`, lazy load) | ≤ 120 KB por capa, ≤ 480 KB no capítulo |
+| 5. Competências | ≤ 3 / 0 (lista HTML) | ≤ 400 / — | `[1, 2]` / — | Nenhum (rótulos em HTML) | 0 |
+| 6. Trajetória/Eventos | 0 | — | — | Logos de eventos/instituições, se houver (SVG de preferência) | ≤ 10 KB por logo, ≤ 100 KB no capítulo |
+| 7. Contato | ≤ 3 / ≤ 2 | ≤ 120 / ≤ 60 | `[1, 1.5]` / `[1, 1.25]` | Nenhum; o fallback é o SVG estático | ≤ 5 KB (SVG) |
+
+- "—" quer dizer que a cena não usa WebGL naquela situação: o canvas fica parado e não conta no frame.
+- Os tetos de draw calls por cena somam bem menos que o teto global (§0.6), que fica como margem para o pós-processamento opcional e para a transição entre modos.
+- O DPR por cena é aplicado no limite superior (`setDpr`) quando o modo muda; o `PerformanceMonitor` ainda pode baixá-lo.
+
 ---
 
 ## 1. Hero (`#inicio`), cinematográfico
@@ -77,7 +95,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 
 - **Movimento reduzido:** texto já visível; imagem estática da rede montada no lugar do canvas; sem parallax de cursor.
 - **Celular:** sem parallax de cursor (não há ponteiro); a rede entra montada mais rápido (~800 ms); a saída mantém o recuo da câmera por scrub, que é barato.
-- **Orçamento:** nós em 1 `instancedMesh` + arestas em 1 `lineSegments` + 1 camada opcional de brilho = **≤ 3 draw calls**. O canvas monta dentro de um placeholder com o mesmo tamanho (CLS zero).
+- **Orçamento:** nós em 1 `instancedMesh` + arestas em 1 `lineSegments` + 1 camada opcional de brilho = **≤ 3 draw calls** (≤ 2 no celular, sem brilho); ≤ 400 nós (≤ 150 no celular); DPR `[1, 2]` (`[1, 1.5]` no celular); assets: sprite de brilho ≤ 32 KB e imagem de fallback ≤ 80 KB (≤ 40 KB no celular). O canvas monta dentro de um placeholder com o mesmo tamanho (CLS zero).
 
 ## 2. Sobre (`#sobre`), pinado
 
@@ -91,7 +109,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 
 - **Movimento reduzido:** sem pin; texto inteiro visível; rede estática ao fundo como imagem, ou ausente.
 - **Celular:** sem pin; cada parágrafo entra com fade/subida curta quando chega a 80% da viewport (`once: true`); rede escondida (o texto precisa da tela inteira).
-- **Orçamento:** mesmos ≤ 3 draw calls do Hero (é a mesma cena); a foto entra com `next/image` em tamanho responsivo. A foto depende da #4 (sessão de foto); até lá, o bloco da foto não aparece.
+- **Orçamento:** mesmos ≤ 3 draw calls do Hero (é a mesma cena), com DPR limitado a `[1, 1.5]` porque a rede fica ao fundo em baixa opacidade; no celular, 0 draw calls (rede escondida). Asset: a foto, com `next/image` em tamanho responsivo e ≤ 150 KB na maior largura servida. A foto depende da #4 (sessão de foto); até lá, o bloco da foto não aparece.
 - **Acessibilidade:** o SplitText quebra o texto em linhas só para efeito visual; o texto original precisa continuar legível por leitores de tela (conferir a opção de acessibilidade do SplitText na versão instalada ao implementar).
 
 ## 3. Indicadores (`#indicadores`)
@@ -108,7 +126,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 - **Acessibilidade:** o valor final está no HTML do servidor. O número animado é uma cópia visual com `aria-hidden="true"`; o leitor de tela lê só o valor real, uma vez.
 - **Movimento reduzido:** números já no valor final, sem glitch.
 - **Celular:** mesma contagem (é barata); grade em 2 colunas.
-- **Orçamento:** 0 draw calls (canvas parado); nenhum asset; só transform/opacity e texto.
+- **Orçamento:** 0 draw calls (canvas parado, DPR não se aplica); nenhum asset; só transform/opacity e texto.
 
 ## 4. Projetos (`#projetos`), parallax
 
@@ -124,7 +142,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 - **Teclado:** o foco no card (`:focus-within`) dispara o mesmo estado do hover. A stack também está no HTML, nunca só no hover.
 - **Movimento reduzido:** sem parallax e sem inclinação; hover/foco só muda borda e brilho.
 - **Celular:** uma coluna; sem parallax e sem inclinação (não há hover); stack sempre visível no card.
-- **Orçamento:** 0 draw calls; imagens de capa via `next/image` (AVIF/WebP, `sizes` correto), carregadas com lazy load; no máximo 4 cards em destaque na Home ([02-conteudo](pesquisa/02-conteudo.md)). As capas reais dependem da #23.
+- **Orçamento:** 0 draw calls (sem WebGL, DPR não se aplica); imagens de capa via `next/image` (AVIF/WebP, `sizes` correto), carregadas com lazy load, ≤ 120 KB por capa e ≤ 480 KB no capítulo; no máximo 4 cards em destaque na Home ([02-conteudo](pesquisa/02-conteudo.md)). As capas reais dependem da #23.
 
 ## 5. Competências (`#competencias`)
 
@@ -140,7 +158,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 - **Acessibilidade:** o grafo é decorativo; a mesma informação existe como **lista HTML agrupada por área**, navegável por teclado. O destaque por foco usa essa lista.
 - **Movimento reduzido / sem WebGL:** só a lista agrupada (com o visual de "chips"), sem canvas.
 - **Celular:** lista agrupada em vez do grafo (o grafo com rótulos não cabe numa tela estreita sem perder a legibilidade).
-- **Orçamento:** reaproveita o `instancedMesh` e o `lineSegments` do Hero (≤ 3 draw calls) + rótulos em HTML (não contam como draw call). Se os rótulos forem `Html` do Drei, no máximo ~20 ao mesmo tempo.
+- **Orçamento:** reaproveita o `instancedMesh` e o `lineSegments` do Hero (≤ 3 draw calls, ≤ 400 nós, DPR `[1, 2]`) + rótulos em HTML (não contam como draw call); nenhum asset novo; no celular, 0 draw calls (só a lista). Se os rótulos forem `Html` do Drei, no máximo ~20 ao mesmo tempo.
 
 ## 6. Trajetória / Eventos (`#trajetoria`), linha do tempo horizontal
 
@@ -156,7 +174,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 - **Acessibilidade:** a trilha é uma lista ordenada (`<ol>`) no HTML; os marcos têm data em `<time>`. Navegação por Tab percorre os marcos em ordem e, se o foco cair num marco fora da tela, a rolagem leva até ele.
 - **Movimento reduzido:** sem pin; linha do tempo vertical, tudo visível.
 - **Celular:** linha do tempo vertical, sem pin; cada marco entra com fade curto (`once: true`).
-- **Orçamento:** 0 draw calls; só transform/opacity; logos de eventos/instituições (se houver) como SVG ou imagens pequenas com lazy load.
+- **Orçamento:** 0 draw calls (DPR não se aplica); só transform/opacity; logos de eventos/instituições (se houver) como SVG ou imagens pequenas com lazy load, ≤ 10 KB por logo e ≤ 100 KB no capítulo.
 
 ## 7. Contato (`#contato`)
 
@@ -171,7 +189,7 @@ Esses números são metas de projeto, não medições: a #25 confere em celular 
 - **Conteúdo:** só links reais (e-mail, LinkedIn, GitHub). O formulário depende da P03 e da #26; enquanto não existir, o capítulo tem só links. Link sem valor cadastrado não aparece.
 - **Movimento reduzido / sem WebGL:** imagem estática do ponto de convergência, ou nenhum fundo; links visíveis.
 - **Celular:** convergência mantida, com metade dos nós (o scrub é barato) ou trocada por um SVG estático se o `PerformanceMonitor` tiver baixado a qualidade antes.
-- **Orçamento:** ≤ 3 draw calls (mesma cena); nenhum asset novo.
+- **Orçamento:** ≤ 3 draw calls (≤ 2 no celular) com ≤ 120 nós (≤ 60 no celular); DPR `[1, 1.5]` (`[1, 1.25]` no celular); nenhum asset novo além do SVG estático de fallback (≤ 5 KB).
 
 ---
 
