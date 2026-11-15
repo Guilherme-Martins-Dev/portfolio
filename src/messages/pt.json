@@ -1,0 +1,20 @@
+{
+  "Metadata": {
+    "title": "Guilherme Martins Bezerra"
+  },
+  "Navigation": {
+    "label": "Navegação principal",
+    "home": "Início",
+    "about": "Sobre",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "events": "Eventos",
+    "studies": "Estudos",
+    "contact": "Contato"
+  },
+  "LocaleSwitcher": {
+    "label": "Idioma",
+    "pt": "Português",
+    "en": "English"
+  }
+}
