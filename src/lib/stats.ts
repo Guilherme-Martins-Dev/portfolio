@@ -1,4 +1,5 @@
-import type { EventRole, Experience, PortfolioEvent, Project, ProjectStatus } from "./schemas";
+import type { EventRole, Experience, PortfolioEvent, Project, ProjectStatus, Technology, TechnologyArea } from "./schemas";
+import { technologyAreas } from "./schemas";
 
 /**
  * Indicadores da Home (decisão D05): sempre calculados a partir de src/content, nunca digitados.
@@ -79,4 +80,20 @@ export function toIndicators(stats: Stats): Indicator[] {
     ["yearsOfExperience", stats.yearsOfExperience],
   ];
   return all.filter((entry): entry is [string, number] => entry[1] !== null && entry[1] > 0).map(([key, value]) => ({ key, value }));
+}
+
+/**
+ * Áreas de foco da Sobre (D05): as áreas das tecnologias usadas em projetos e experiências,
+ * na ordem fixa do cadastro. Assim a lista nunca é digitada à mão.
+ */
+export function focusAreas(
+  input: { projects: Project[]; experience: Experience[] },
+  technologies: Technology[],
+): TechnologyArea[] {
+  const used = new Set([
+    ...input.projects.flatMap((p) => p.technologies),
+    ...input.experience.flatMap((e) => e.technologies),
+  ]);
+  const areas = new Set(technologies.filter((t) => used.has(t.id)).map((t) => t.area));
+  return technologyAreas.filter((area) => areas.has(area));
 }

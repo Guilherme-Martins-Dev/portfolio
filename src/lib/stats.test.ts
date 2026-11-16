@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import type { Experience, PortfolioEvent, Project } from "./schemas";
-import { computeStats, fullYearsBetween, parsePartialDate, toIndicators } from "./stats";
+import { computeStats, focusAreas, fullYearsBetween, parsePartialDate, toIndicators } from "./stats";
 
 const project = (slug: string, status: Project["status"], technologies: string[] = []): Project => ({
   slug,
@@ -89,5 +89,24 @@ describe("toIndicators", () => {
       { key: "projectsCompleted", value: 1 },
       { key: "technologies", value: 1 },
     ]);
+  });
+});
+
+describe("focusAreas", () => {
+  it("lista só as áreas das tecnologias usadas, na ordem do cadastro", () => {
+    const technologies = [
+      { id: "react", name: "React", area: "frontend" as const },
+      { id: "moodle", name: "Moodle", area: "integracao" as const },
+      { id: "cadquery", name: "CadQuery", area: "3d" as const },
+    ];
+    const result = focusAreas(
+      { projects: [project("a", "concluido", ["moodle", "react"])], experience: [] },
+      technologies,
+    );
+    expect(result).toEqual(["frontend", "integracao"]);
+  });
+
+  it("retorna lista vazia sem projetos nem experiências", () => {
+    expect(focusAreas({ projects: [], experience: [] }, [])).toEqual([]);
   });
 });

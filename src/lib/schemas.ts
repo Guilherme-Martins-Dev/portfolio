@@ -30,7 +30,9 @@ const links = z
   })
   .strict();
 
-export const technologyArea = z.enum(["frontend", "backend", "ia", "3d", "hardware", "integracao", "ferramentas"]);
+export const technologyAreas = ["frontend", "backend", "ia", "3d", "hardware", "integracao", "ferramentas"] as const;
+export const technologyArea = z.enum(technologyAreas);
+export type TechnologyArea = z.infer<typeof technologyArea>;
 
 export const technologySchema = z
   .object({

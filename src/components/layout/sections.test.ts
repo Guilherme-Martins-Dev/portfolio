@@ -30,3 +30,17 @@ describe("seções e navegação", () => {
     for (const page of SITE_PAGES) expect(Object.keys(routing.pathnames)).toContain(page.pathname);
   });
 });
+
+describe("textos da Home (#15)", () => {
+  it("Hero, Sobre, áreas de foco e indicadores têm texto nos dois idiomas", () => {
+    const technologyAreas = ["frontend", "backend", "ia", "3d", "hardware", "integracao", "ferramentas"] as const;
+    const statKeys = ["projects", "projectsCompleted", "projectsInProgress", "events", "eventsOrganized", "technologies", "yearsOfExperience"];
+    for (const [locale, m] of Object.entries(messages)) {
+      expect(m.Hero.viewProjects, `${locale}: Hero.viewProjects`).toBeTruthy();
+      expect(m.Hero.contact, `${locale}: Hero.contact`).toBeTruthy();
+      expect(m.About.focusAreas, `${locale}: About.focusAreas`).toBeTruthy();
+      for (const area of technologyAreas) expect(m.Areas[area], `${locale}: Areas.${area}`).toBeTruthy();
+      for (const key of statKeys) expect(m.Stats[key as keyof typeof m.Stats], `${locale}: Stats.${key}`).toBeTruthy();
+    }
+  });
+});
