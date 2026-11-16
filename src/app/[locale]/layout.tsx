@@ -5,6 +5,10 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { MAIN_CONTENT_ID } from "@/components/layout/sections";
+import { SkipLink } from "@/components/layout/skip-link";
 import { themeScript } from "@/components/shared/theme-script";
 import { htmlLang, routing } from "@/i18n/routing";
 import "../globals.css";
@@ -51,7 +55,15 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SkipLink />
+          <SiteHeader />
+          {/* tabIndex -1: o skip link move o foco para cá, não só a rolagem. */}
+          <main id={MAIN_CONTENT_ID} tabIndex={-1} className="flex flex-1 flex-col outline-none">
+            {children}
+          </main>
+          <SiteFooter />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

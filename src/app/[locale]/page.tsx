@@ -1,12 +1,33 @@
-import { LocaleSwitcher } from "@/components/navigation/locale-switcher";
+import { useTranslations } from "next-intl";
 
-// Página provisória. A Home real (Hero, Sobre, Indicadores...) entra nas issues #15 e #16,
-// e o seletor de idioma vai para o cabeçalho na #14.
+import { HomeSection } from "@/components/layout/home-section";
+import { HOME_SECTIONS } from "@/components/layout/sections";
+
+// Home provisória: só a estrutura de seções com âncora (#14). O conteúdo de cada capítulo
+// entra nas issues #15 (Hero, Sobre, Indicadores) e #16 (Projetos, Trajetória, Contato).
 export default function Home() {
+  const t = useTranslations("Sections");
+
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-6 p-8">
-      <h1 className="text-2xl font-semibold">Guilherme Martins Bezerra</h1>
-      <LocaleSwitcher />
-    </main>
+    <>
+      {HOME_SECTIONS.map((section) => (
+        <HomeSection
+          key={section.id}
+          id={section.id}
+          aria-labelledby={`${section.id}-titulo`}
+          className="mx-auto flex min-h-[80svh] w-full max-w-6xl flex-col justify-center gap-4 px-4 py-16 sm:px-6"
+        >
+          {section.id === "inicio" ? (
+            <h1 id={`${section.id}-titulo`} className="font-display text-5xl sm:text-7xl">
+              Guilherme Martins Bezerra
+            </h1>
+          ) : (
+            <h2 id={`${section.id}-titulo`} className="font-display text-4xl sm:text-5xl">
+              {t(section.label)}
+            </h2>
+          )}
+        </HomeSection>
+      ))}
+    </>
   );
 }
