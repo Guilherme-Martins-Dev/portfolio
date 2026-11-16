@@ -6,6 +6,8 @@ node_modules/
 .next/
 out/
 next-env.d.ts
+.velite/
+public/static/
 *.tsbuildinfo
 
 # build e cobertura

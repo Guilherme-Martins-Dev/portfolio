@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 // Página interna do design system: mostra tokens e componentes base nos dois temas.
-// Na issue #9 ela passa para app/[locale]/design. Não entra no menu nem no sitemap.
+// Não entra no menu nem no sitemap.
 export const metadata: Metadata = {
   title: "Design system",
   robots: { index: false, follow: false },
@@ -35,7 +35,7 @@ const semantic = [
 
 export default function DesignPage() {
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6 py-12">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6 py-12">
       <header className="flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -109,6 +109,6 @@ export default function DesignPage() {
           <p className="text-muted-foreground">Superfície com borda e brilho (--glow).</p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

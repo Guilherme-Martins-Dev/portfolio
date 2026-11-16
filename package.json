@@ -4,19 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm content:check && next build",
+    "build": "pnpm content:build && pnpm content:check && next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit",
-    "test": "vitest run",
-    "test:e2e": "playwright test",
-    "content:check": "tsx scripts/check-content.ts"
+    "typecheck": "pnpm content:build && next typegen && tsc --noEmit",
+    "test": "pnpm content:build && vitest run",
+    "content:check": "tsx scripts/check-content.ts",
+    "content:build": "velite build --strict",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "1.73.0",
     "next": "16.4.6",
+    "next-intl": "4.15.1",
     "radix-ui": "1.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -37,6 +39,7 @@
     "tailwindcss": "4.3.5",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
+    "velite": "0.4.0",
     "vitest": "5.1.0"
   },
   "engines": {
