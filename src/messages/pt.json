@@ -37,5 +37,30 @@
     "projects": "Projetos",
     "journey": "Trajetória e eventos",
     "contact": "Contato"
+  },
+  "Hero": {
+    "viewProjects": "Ver projetos",
+    "contact": "Entrar em contato"
+  },
+  "About": {
+    "focusAreas": "Áreas de foco"
+  },
+  "Areas": {
+    "frontend": "Front-end",
+    "backend": "Back-end",
+    "ia": "IA",
+    "3d": "3D",
+    "hardware": "Hardware",
+    "integracao": "Integrações",
+    "ferramentas": "Ferramentas"
+  },
+  "Stats": {
+    "projects": "Projetos",
+    "projectsCompleted": "Concluídos",
+    "projectsInProgress": "Em desenvolvimento",
+    "events": "Eventos",
+    "eventsOrganized": "Eventos organizados",
+    "technologies": "Tecnologias",
+    "yearsOfExperience": "Anos de experiência"
   }
 }
