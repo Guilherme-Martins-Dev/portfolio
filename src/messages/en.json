@@ -10,7 +10,8 @@
     "projects": "Projects",
     "events": "Events",
     "studies": "Studies",
-    "contact": "Contact"
+    "contact": "Contact",
+    "journey": "Journey"
   },
   "LocaleSwitcher": {
     "label": "Language",
@@ -19,5 +20,22 @@
   },
   "ThemeToggle": {
     "label": "Toggle light/dark theme"
+  },
+  "Layout": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mobileMenu": "Menu",
+    "pages": "Pages",
+    "contacts": "Contacts",
+    "homeSections": "On this page"
+  },
+  "Sections": {
+    "home": "Home",
+    "about": "About",
+    "stats": "Highlights",
+    "projects": "Projects",
+    "journey": "Journey and events",
+    "contact": "Contact"
   }
 }
