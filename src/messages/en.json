@@ -62,5 +62,36 @@
     "eventsOrganized": "Events organized",
     "technologies": "Technologies",
     "yearsOfExperience": "Years of experience"
+  },
+  "Projects": {
+    "completed": "Completed",
+    "inProgress": "In development",
+    "stack": "Technologies",
+    "caseStudy": "Read the case study",
+    "repository": "Repository",
+    "demo": "View live",
+    "confidential": "Client project: private code"
+  },
+  "ProjectStatus": {
+    "concluido": "Completed",
+    "em-desenvolvimento": "In development",
+    "planejamento": "Planned"
+  },
+  "Journey": {
+    "experience": "Experience",
+    "event": "Event",
+    "present": "present",
+    "empty": "The timeline with experience and events is being prepared."
+  },
+  "EventRole": {
+    "participante": "Attendee",
+    "organizador": "Organizer",
+    "palestrante": "Speaker",
+    "mentor": "Mentor",
+    "apoio-tecnico": "Technical support"
+  },
+  "Contact": {
+    "lead": "Want to talk about a project, an opportunity or an event?",
+    "channels": "Contact channels"
   }
 }

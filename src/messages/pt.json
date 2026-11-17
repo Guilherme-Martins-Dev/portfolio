@@ -62,5 +62,36 @@
     "eventsOrganized": "Eventos organizados",
     "technologies": "Tecnologias",
     "yearsOfExperience": "Anos de experiência"
+  },
+  "Projects": {
+    "completed": "Concluídos",
+    "inProgress": "Em desenvolvimento",
+    "stack": "Tecnologias",
+    "caseStudy": "Ler o estudo de caso",
+    "repository": "Repositório",
+    "demo": "Ver online",
+    "confidential": "Projeto para cliente: código privado"
+  },
+  "ProjectStatus": {
+    "concluido": "Concluído",
+    "em-desenvolvimento": "Em desenvolvimento",
+    "planejamento": "Em planejamento"
+  },
+  "Journey": {
+    "experience": "Experiência",
+    "event": "Evento",
+    "present": "atual",
+    "empty": "A linha do tempo com experiências e eventos está sendo preparada."
+  },
+  "EventRole": {
+    "participante": "Participação",
+    "organizador": "Organização",
+    "palestrante": "Palestra",
+    "mentor": "Mentoria",
+    "apoio-tecnico": "Apoio técnico"
+  },
+  "Contact": {
+    "lead": "Quer conversar sobre um projeto, uma oportunidade ou um evento?",
+    "channels": "Canais de contato"
   }
 }
