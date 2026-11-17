@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { profile } from "@/content";
+import { getContactLinks } from "@/lib/home-data";
 import { PageLinks } from "./nav-links";
 
 const linkClass =
@@ -13,11 +14,7 @@ const linkClass =
 export function SiteFooter() {
   const t = useTranslations("Layout");
   // TODO(guilherme): preencher e-mail, GitHub e LinkedIn em src/content/profile.ts para aparecerem aqui.
-  const contacts = [
-    profile.links.github && { label: "GitHub", href: profile.links.github, external: true },
-    profile.links.linkedin && { label: "LinkedIn", href: profile.links.linkedin, external: true },
-    profile.email && { label: profile.email, href: `mailto:${profile.email}`, external: false },
-  ].filter((item) => !!item);
+  const contacts = getContactLinks();
 
   return (
     <footer className="border-t border-border bg-card text-card-foreground">

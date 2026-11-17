@@ -1,5 +1,6 @@
-import { events, experience, projects, technologies } from "@/content";
+import { events, experience, profile, projects, technologies } from "@/content";
 
+import { buildTimeline, contactLinks, splitFeaturedProjects, technologyNames } from "./home-sections";
 import { computeStats, focusAreas, toIndicators } from "./stats";
 
 /**
@@ -13,4 +14,20 @@ export async function getHomeIndicators() {
 
 export function getFocusAreas() {
   return focusAreas({ projects, experience }, technologies);
+}
+
+export function getHomeProjects() {
+  return splitFeaturedProjects(projects);
+}
+
+export function getProjectTechnologies(ids: string[]) {
+  return technologyNames(ids, technologies);
+}
+
+export function getTimeline() {
+  return buildTimeline({ experience, events });
+}
+
+export function getContactLinks() {
+  return contactLinks(profile);
 }
