@@ -1,8 +1,9 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
-import { getCaseStudy } from "@/lib/case-studies";
+import { getVisibleCaseStudies } from "@/lib/case-studies";
 import { getProjectTechnologies } from "@/lib/home-data";
+import { resolveCaseStudy } from "@/lib/projects-catalog";
 import type { Project } from "@/lib/schemas";
 import { StatusBadge } from "./status-badge";
 
@@ -13,12 +14,15 @@ const linkClass =
  * Card de projeto da Home (storyboard §4). A profundidade em CSS 3D (inclinação + camadas em
  * `translateZ`) só existe com `motion-safe`, em dispositivos com hover; com movimento reduzido o
  * hover/foco muda só a borda. A stack e os links ficam sempre no HTML, nunca só no hover.
+ * `headingLevel`: h4 na Home (dentro de "Projetos" > grupo), h2 na página /projetos.
  */
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, headingLevel = 4 }: { project: Project; headingLevel?: 2 | 3 | 4 }) {
   const t = useTranslations("Projects");
   const locale = useLocale() as "pt" | "en";
   const stack = getProjectTechnologies(project.technologies);
-  const caseStudy = getCaseStudy(project.slug, locale);
+  // Com fallback: se só existir o estudo no outro idioma, o link aparece e a página avisa o leitor.
+  const caseStudy = resolveCaseStudy(project.slug, locale, getVisibleCaseStudies());
+  const Heading = `h${headingLevel}` as const;
   const titleId = `projeto-${project.slug}-titulo`;
 
   const external = [
@@ -34,9 +38,9 @@ export function ProjectCard({ project }: { project: Project }) {
         className="group/card flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-6 text-card-foreground transition-[transform,border-color,box-shadow] duration-300 ease-out transform-3d hover:border-ring focus-within:border-ring motion-safe:hover:-rotate-y-4 motion-safe:hover:rotate-x-3 motion-safe:hover:shadow-[0_24px_48px_-24px_var(--glow)] motion-safe:focus-within:-rotate-y-4 motion-safe:focus-within:rotate-x-3 motion-safe:focus-within:shadow-[0_24px_48px_-24px_var(--glow)]"
       >
         <div className="flex flex-wrap items-center justify-between gap-2 transition-transform duration-300 motion-safe:group-hover/card:translate-z-6 motion-safe:group-focus-within/card:translate-z-6">
-          <h4 id={titleId} className="font-display text-2xl">
+          <Heading id={titleId} className="font-display text-2xl">
             {project.title}
-          </h4>
+          </Heading>
           <StatusBadge status={project.status} />
         </div>
 
