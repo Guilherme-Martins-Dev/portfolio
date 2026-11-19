@@ -1,6 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { HomeSection } from "@/components/layout/home-section";
+import { HorizontalTimeline } from "@/components/motion/horizontal-timeline";
 import { getTimeline } from "@/lib/home-data";
 import { formatPartialDate, type TimelineItem } from "@/lib/home-sections";
 
@@ -20,20 +21,25 @@ export function Experience() {
   const items = getTimeline().filter((item): item is ExperienceItem => item.kind === "experience");
 
   return (
-    <HomeSection id="experience" aria-labelledby="experience-titulo" className={sectionClass}>
-      <h2 id="experience-titulo" className="font-display text-4xl sm:text-5xl">
-        {t("experience")}
-      </h2>
-      {items.length > 0 ? (
-        <ol className="flex flex-col gap-8 border-l border-border pl-6">
-          {items.map((item) => (
-            <TimelineEntry key={item.id} item={item} />
-          ))}
-        </ol>
-      ) : (
-        // TODO(guilherme): cadastrar experiências em src/content/experience.ts.
-        <p className="text-muted-foreground">{tJourney("emptyExperience")}</p>
-      )}
+    <HomeSection id="experience" aria-labelledby="experience-titulo">
+      {/* data-pin: o bloco que o GSAP fixa na linha do tempo horizontal; a <section> fica livre para a âncora. */}
+      <div data-pin className={sectionClass}>
+        <h2 id="experience-titulo" className="font-display text-4xl sm:text-5xl">
+          {t("experience")}
+        </h2>
+        {items.length > 0 ? (
+          <HorizontalTimeline>
+            <ol className="flex flex-col gap-8 border-l border-border pl-6">
+              {items.map((item) => (
+                <TimelineEntry key={item.id} item={item} />
+              ))}
+            </ol>
+          </HorizontalTimeline>
+        ) : (
+          // TODO(guilherme): cadastrar experiências em src/content/experience.ts.
+          <p className="text-muted-foreground">{tJourney("emptyExperience")}</p>
+        )}
+      </div>
     </HomeSection>
   );
 }

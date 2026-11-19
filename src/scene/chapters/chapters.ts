@@ -44,9 +44,9 @@ export const chapters: readonly SceneChapter[] = [
   },
   {
     id: "experience",
-    camera: { position: [1.6, 0.6, 7.5], target: [-1.6, 0, 0], fov: 44 },
+    camera: { position: [1.6, 0.6, 10], target: [-3.8, 0, 0], fov: 44 },
     mobile: { position: [3, 0.6, 10], target: [0, 2.2, 0], fov: 50 },
-    world: { open: 0.45, stretch: 1.9, hue: 0.5, glow: 0.5 },
+    world: { open: 0.45, stretch: 1.9, hue: 0.5, glow: 0.28 },
   },
   {
     id: "projects",
