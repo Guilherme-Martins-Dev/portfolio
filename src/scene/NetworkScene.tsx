@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { chapters, type CameraPose, type WorldState } from "./chapters/chapters";
 import { buildNetwork } from "./network-data";
 import { clamp01, damp, lerp, lerpVec3, lerpWorld, poseFor, segmentState } from "./progress";
+import { createQualityGovernor } from "./quality";
 import { sceneScroll } from "./scroll-store";
 import { linkFragment, linkVertex, nodeFragment, nodeVertex } from "./shaders/network";
 import { useScrollProgress } from "./useScrollProgress";
@@ -15,6 +16,8 @@ declare global {
   interface Window {
     /** Quadros desenhados pela cena; os testes e2e usam para provar que, parada, ela não desenha. */
     __sceneFrames?: number;
+    /** DPR atual escolhido pelo governador de qualidade. */
+    __sceneDpr?: number;
   }
 }
 
@@ -88,12 +91,15 @@ function applyCamera(camera: THREE.PerspectiveCamera, from: CameraPose, to: Came
  * interpolados pelo valor de scroll. Só desenha quando algo muda (`frameloop="demand"`).
  */
 export function NetworkScene({ onLost, route }: { onLost: () => void; route: string }) {
-  const { camera, gl, invalidate, size, viewport } = useThree();
+  const { camera, gl, invalidate, size, viewport, setDpr } = useThree();
   const group = useRef<THREE.Group>(null);
   const nodeMaterial = useRef<THREE.ShaderMaterial>(null);
   const linkMaterial = useRef<THREE.ShaderMaterial>(null);
   const smooth = useRef(sceneScroll.get());
   const palette = useRef<Palette | null>(null);
+
+  // Qualidade adaptativa: baixa o DPR se os quadros desenhados durante o scroll ficarem lentos.
+  const governor = useMemo(() => createQualityGovernor(viewport.initialDpr), [viewport.initialDpr]);
 
   const reducedMotion = useMemo(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches, []);
   useScrollProgress(reducedMotion, route);
@@ -135,6 +141,12 @@ export function NetworkScene({ onLost, route }: { onLost: () => void; route: str
 
   useFrame((_, delta) => {
     window.__sceneFrames = (window.__sceneFrames ?? 0) + 1;
+
+    const nextDpr = governor.observe(delta * 1000);
+    if (nextDpr !== null) {
+      setDpr(nextDpr);
+      window.__sceneDpr = nextDpr;
+    }
 
     const target = sceneScroll.get();
     smooth.current = reducedMotion ? target : damp(smooth.current, target, 5.2, Math.min(delta, 1 / 30));
