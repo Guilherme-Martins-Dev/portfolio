@@ -16,11 +16,11 @@ export function Contact() {
 
   return (
     <HomeSection
-      id="contato"
-      aria-labelledby="contato-titulo"
+      id="contact"
+      aria-labelledby="contact-titulo"
       className="mx-auto flex min-h-[80svh] w-full max-w-6xl flex-col justify-center gap-6 px-4 py-16 sm:px-6"
     >
-      <h2 id="contato-titulo" className="font-display text-4xl sm:text-5xl">
+      <h2 id="contact-titulo" className="font-display text-4xl sm:text-5xl">
         {t("contact")}
       </h2>
       <p className="max-w-xl text-lg text-muted-foreground">{tContact("lead")}</p>

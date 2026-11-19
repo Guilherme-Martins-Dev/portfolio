@@ -31,6 +31,12 @@ describe("seções e navegação", () => {
   });
 });
 
+describe("seções do briefing (fase 0)", () => {
+  it("a Home tem exatamente os seis ids do briefing, nesta ordem", () => {
+    expect(HOME_SECTIONS.map((section) => section.id)).toEqual(["hero", "about", "experience", "projects", "events", "contact"]);
+  });
+});
+
 describe("textos da Home (#15)", () => {
   it("Hero, Sobre, áreas de foco e indicadores têm texto nos dois idiomas", () => {
     const technologyAreas = ["frontend", "backend", "ia", "3d", "hardware", "integracao", "ferramentas"] as const;
