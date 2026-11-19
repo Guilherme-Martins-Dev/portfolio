@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MAIN_CONTENT_ID } from "@/components/layout/sections";
 import { SkipLink } from "@/components/layout/skip-link";
 import { themeScript } from "@/components/shared/theme-script";
+import { SceneLayer } from "@/scene/SceneLayer";
 import { htmlLang, routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -55,6 +56,8 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
+        {/* Único canvas WebGL do projeto: montado aqui, uma vez, atrás do conteúdo (briefing). */}
+        <SceneLayer />
         <NextIntlClientProvider>
           <SkipLink />
           <SiteHeader />
