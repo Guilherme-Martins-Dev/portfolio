@@ -15,3 +15,8 @@ export function getCaseStudies(locale: CaseStudyLocale, all: CaseStudy[] = caseS
 export function getCaseStudy(slug: string, locale: CaseStudyLocale, all: CaseStudy[] = caseStudies): CaseStudy | undefined {
   return getCaseStudies(locale, all).find((s) => s.slug === slug);
 }
+
+/** Todos os estudos de caso visíveis no ambiente atual, nos dois idiomas. */
+export function getVisibleCaseStudies(all: CaseStudy[] = caseStudies): CaseStudy[] {
+  return all.filter((s) => isVisible(s));
+}

@@ -93,5 +93,35 @@
   "Contact": {
     "lead": "Want to talk about a project, an opportunity or an event?",
     "channels": "Contact channels"
+  },
+  "ProjectsPage": {
+    "title": "Projects",
+    "lead": "Completed and in-progress projects. Filter by status or by technology.",
+    "filterStatus": "Status",
+    "filterTechnology": "Technology",
+    "all": "All",
+    "count": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
+    "listLabel": "Project list",
+    "empty": "No projects match these filters.",
+    "clear": "Clear filters"
+  },
+  "CaseStudy": {
+    "breadcrumb": "Case study navigation",
+    "back": "All projects",
+    "role": "Role",
+    "team": "Team",
+    "teamSize": "{count, plural, one {# person} other {# people}}",
+    "updatedAt": "Updated on",
+    "fallback": "This case study is not available in English yet. The text below is in {language}.",
+    "language": {
+      "pt": "Portuguese",
+      "en": "English"
+    }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "This address does not exist or the content has not been published yet.",
+    "home": "Back to home",
+    "projects": "See the projects"
   }
 }

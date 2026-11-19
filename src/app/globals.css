@@ -152,3 +152,28 @@
     }
   }
 }
+
+/* Corpo dos estudos de caso em MDX (/projetos/[slug]): tipografia de leitura sem plugin de prose. */
+@layer components {
+  .case-study-body {
+    @apply flex flex-col gap-4 text-base leading-relaxed;
+  }
+  .case-study-body h2 {
+    @apply mt-8 font-display text-3xl;
+  }
+  .case-study-body h3 {
+    @apply mt-6 font-display text-2xl;
+  }
+  .case-study-body ul {
+    @apply list-disc pl-6;
+  }
+  .case-study-body ol {
+    @apply list-decimal pl-6;
+  }
+  .case-study-body li + li {
+    @apply mt-1;
+  }
+  .case-study-body a {
+    @apply text-link underline underline-offset-4;
+  }
+}

@@ -93,5 +93,35 @@
   "Contact": {
     "lead": "Quer conversar sobre um projeto, uma oportunidade ou um evento?",
     "channels": "Canais de contato"
+  },
+  "ProjectsPage": {
+    "title": "Projetos",
+    "lead": "Projetos concluídos e em desenvolvimento. Filtre por situação ou por tecnologia.",
+    "filterStatus": "Situação",
+    "filterTechnology": "Tecnologia",
+    "all": "Todos",
+    "count": "{count, plural, =0 {Nenhum projeto} one {# projeto} other {# projetos}}",
+    "listLabel": "Lista de projetos",
+    "empty": "Nenhum projeto com esses filtros.",
+    "clear": "Limpar filtros"
+  },
+  "CaseStudy": {
+    "breadcrumb": "Navegação do estudo de caso",
+    "back": "Todos os projetos",
+    "role": "Papel",
+    "team": "Equipe",
+    "teamSize": "{count, plural, one {# pessoa} other {# pessoas}}",
+    "updatedAt": "Atualizado em",
+    "fallback": "Este estudo de caso ainda não tem versão em português. O texto abaixo está em {language}.",
+    "language": {
+      "pt": "português",
+      "en": "inglês"
+    }
+  },
+  "NotFound": {
+    "title": "Página não encontrada",
+    "description": "O endereço não existe ou o conteúdo ainda não foi publicado.",
+    "home": "Voltar ao início",
+    "projects": "Ver os projetos"
   }
 }
