@@ -33,28 +33,11 @@ jobs:
       - run: pnpm test
       - run: pnpm build
 
-      - name: Versão do Playwright
-        id: playwright
-        run: echo "version=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
-
-      - name: Cache dos navegadores do Playwright
-        id: playwright-cache
-        uses: actions/cache@v6
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
-
-      - name: Instalar o Chromium
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec playwright install --with-deps chromium
-
-      - name: Dependências de sistema do Chromium
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: pnpm exec playwright install-deps chromium
-
+      # O runner ubuntu-24.04 já traz o Google Chrome: sem `playwright install` nem apt (eram ~6 min).
       - run: pnpm test:e2e
         env:
           CI: true
+          PW_CHANNEL: chrome
 
       - uses: actions/upload-artifact@v7
         if: failure()
