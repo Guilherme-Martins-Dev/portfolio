@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { describe, expect, it } from "vitest";
 
-import { defineCollection, projectSchema } from "@/lib/schemas";
+import { defineCollection, projectSchema, studySchema } from "@/lib/schemas";
 import { computeStats } from "@/lib/stats";
-import { checkReferences, events, experience, projects, technologies } from ".";
+import { checkReferences, events, experience, projects, studies, technologies } from ".";
 
 describe("conteúdo cadastrado", () => {
   it("é válido e as referências entre coleções existem", () => {
-    expect(() => checkReferences({ projects, events, experience, technologies })).not.toThrow();
+    expect(() => checkReferences({ projects, events, experience, technologies, studies })).not.toThrow();
   });
 
   it("tem de 3 a 4 projetos em destaque (02-conteudo §2.3)", () => {
@@ -39,8 +39,16 @@ describe("validação", () => {
         events: [],
         experience: [],
         technologies,
+        studies: [],
       }),
     ).toThrowError(/id repetido[\s\S]*tecnologia desconhecida "nao-existe"/);
+  });
+
+  it("acusa tecnologia inexistente em um estudo", () => {
+    const study = studySchema.parse({ id: "curso-x", kind: "curso", title: { pt: "Curso X", en: "Course X" }, institution: "Escola", technologies: ["nao-existe"] });
+    expect(() => checkReferences({ projects, events, experience, technologies, studies: [study] })).toThrowError(
+      /studies\/curso-x: tecnologia desconhecida "nao-existe"/,
+    );
   });
 
   it("rejeita campos desconhecidos (evita dado digitado no lugar errado)", () => {
