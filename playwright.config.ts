@@ -4,8 +4,10 @@ const PORT = Number(process.env.PORT ?? 3000);
 const baseURL = `http://localhost:${PORT}`;
 
 // Em ambientes com um Chromium já instalado fora do cache do Playwright (ex.: o ambiente do agente),
-// aponte PW_CHROMIUM_PATH para ele; no CI o navegador vem de `playwright install`.
+// aponte PW_CHROMIUM_PATH para ele. No CI, PW_CHANNEL=chrome usa o Google Chrome que já vem no
+// runner (sem baixar navegador nem instalar dependências de sistema com apt, que levava ~6 min).
 const executablePath = process.env.PW_CHROMIUM_PATH || undefined;
+const channel = process.env.PW_CHANNEL || undefined;
 
 export default defineConfig({
   testDir: "./e2e",
@@ -16,6 +18,7 @@ export default defineConfig({
   use: {
     baseURL,
     trace: "on-first-retry",
+    channel,
     launchOptions: { executablePath },
   },
   projects: [
