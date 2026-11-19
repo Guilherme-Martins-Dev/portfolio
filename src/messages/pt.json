@@ -10,8 +10,7 @@
     "projects": "Projetos",
     "events": "Eventos",
     "studies": "Estudos",
-    "contact": "Contato",
-    "journey": "Trajetória"
+    "contact": "Contato"
   },
   "LocaleSwitcher": {
     "label": "Idioma",
@@ -33,9 +32,9 @@
   "Sections": {
     "home": "Início",
     "about": "Sobre",
-    "stats": "Indicadores",
+    "experience": "Experiência",
     "projects": "Projetos",
-    "journey": "Trajetória e eventos",
+    "events": "Eventos",
     "contact": "Contato"
   },
   "Hero": {
@@ -43,7 +42,8 @@
     "contact": "Entrar em contato"
   },
   "About": {
-    "focusAreas": "Áreas de foco"
+    "focusAreas": "Áreas de foco",
+    "stats": "Indicadores"
   },
   "Areas": {
     "frontend": "Front-end",
@@ -81,7 +81,10 @@
     "experience": "Experiência",
     "event": "Evento",
     "present": "atual",
-    "empty": "A linha do tempo com experiências e eventos está sendo preparada."
+    "emptyExperience": "A linha do tempo de experiências está sendo preparada.",
+    "emptyEvents": "A lista de eventos está sendo preparada.",
+    "organized": "Organização",
+    "participated": "Participação"
   },
   "EventRole": {
     "participante": "Participação",

@@ -14,20 +14,20 @@ export function Hero() {
   return (
     <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
       <div className="flex flex-col gap-6">
-        <h1 id="inicio-titulo" className="font-display text-5xl sm:text-7xl">
+        <h1 id="hero-titulo" className="font-display text-5xl sm:text-7xl">
           {profile.name}
         </h1>
         {/* TODO(guilherme): headline em src/content/profile.ts; enquanto estiver vazio, não aparece. */}
         {profile.headline && <p className="max-w-xl text-lg text-muted-foreground">{profile.headline[locale]}</p>}
         <div className="flex flex-wrap gap-3">
           <a
-            href="#projetos"
+            href="#projects"
             className="rounded-md bg-primary px-5 py-2.5 text-primary-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring"
           >
             {t("viewProjects")}
           </a>
           <a
-            href="#contato"
+            href="#contact"
             className="rounded-md border border-border px-5 py-2.5 outline-none focus-visible:ring-[3px] focus-visible:ring-ring"
           >
             {t("contact")}

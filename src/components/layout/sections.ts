@@ -1,18 +1,18 @@
 /**
- * Seções da Home com âncora. Os ids são os mesmos nos dois idiomas (#inicio, #sobre...):
+ * Seções da Home com âncora (briefing, fase 0). Os ids são os mesmos nos dois idiomas (#hero, #about...):
  * assim um link compartilhado continua válido ao trocar de idioma e o seletor PT/EN
  * não precisa traduzir o hash. Ver docs/storyboard.md §0.4.
  *
  * `label` é a chave em `Sections` dos arquivos de mensagens. `inMenu` diz se a seção
- * aparece no menu principal (Início fica na marca; Indicadores não tem entrada própria).
+ * aparece no menu principal (o Hero fica na marca). Os indicadores são uma faixa dentro de #about.
  */
 export const HOME_SECTIONS = [
-  { id: "inicio", label: "home", inMenu: false },
-  { id: "sobre", label: "about", inMenu: true },
-  { id: "indicadores", label: "stats", inMenu: false },
-  { id: "projetos", label: "projects", inMenu: true },
-  { id: "trajetoria", label: "journey", inMenu: true },
-  { id: "contato", label: "contact", inMenu: true },
+  { id: "hero", label: "home", inMenu: false },
+  { id: "about", label: "about", inMenu: true },
+  { id: "experience", label: "experience", inMenu: true },
+  { id: "projects", label: "projects", inMenu: true },
+  { id: "events", label: "events", inMenu: true },
+  { id: "contact", label: "contact", inMenu: true },
 ] as const;
 
 export type HomeSectionId = (typeof HOME_SECTIONS)[number]["id"];

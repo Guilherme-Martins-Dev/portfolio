@@ -34,7 +34,7 @@ Cada decisão traz a origem (**PDF**, o planejamento original, ou **Pesquisa**, 
 | D16 | Tailwind v4 (configuração em CSS com `@theme`) + shadcn/ui | PDF + Pesquisa | O shadcn/ui já suporta Tailwind v4 e React 19 |
 | D17 | Motion (`motion/react`) para microinterações; GSAP + ScrollTrigger para a coreografia do scroll | PDF + Pesquisa | O GSAP inteiro é gratuito desde a compra pela Webflow, inclusive SplitText e ScrollSmoother |
 | D18 | 3D com React Three Fiber v9 + Drei, só nos momentos de destaque, carregado sob demanda | PDF + Pesquisa | Economia de GPU em celulares; boas práticas oficiais do R3F |
-| D19 | Lenis para smooth scroll, sincronizado com o ticker do GSAP | Pesquisa | Padrão de ITom, Cartier e outros sites premiados |
+| D19 | ~~Lenis para smooth scroll~~ **Revogada na fase 0:** o scroll continua nativo, sem suavização que o sequestre (nem Lenis nem Locomotive) | Briefing | Os capítulos da cena são dirigidos pelo scroll nativo; trocá-lo quebra o ScrollTrigger, a navegação por âncora e a rolagem por teclado |
 | D20 | Toda animação respeita `prefers-reduced-motion` e o site tem fallback 2D sem WebGL | PDF + Pesquisa | Acessibilidade e alcance |
 | D21 | Conteúdo em TS tipado com Zod; estudos de caso em MDX (Velite ou `@next/mdx`, a decidir no scaffold) | PDF + Pesquisa | Validação no build; o Contentlayer está abandonado |
 | D22 | Testes com Vitest (unidade) + Playwright (e2e e acessibilidade) | PDF | Qualidade verificável |

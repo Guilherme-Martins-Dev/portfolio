@@ -9,10 +9,11 @@ const locales = [
     openMenu: "Abrir menu",
     skip: "Pular para o conteúdo",
     sections: [
-      { id: "sobre", label: "Sobre" },
-      { id: "projetos", label: "Projetos" },
-      { id: "trajetoria", label: "Trajetória" },
-      { id: "contato", label: "Contato" },
+      { id: "about", label: "Sobre" },
+      { id: "experience", label: "Experiência" },
+      { id: "projects", label: "Projetos" },
+      { id: "events", label: "Eventos" },
+      { id: "contact", label: "Contato" },
     ],
   },
   {
@@ -21,10 +22,11 @@ const locales = [
     openMenu: "Open menu",
     skip: "Skip to content",
     sections: [
-      { id: "sobre", label: "About" },
-      { id: "projetos", label: "Projects" },
-      { id: "trajetoria", label: "Journey" },
-      { id: "contato", label: "Contact" },
+      { id: "about", label: "About" },
+      { id: "experience", label: "Experience" },
+      { id: "projects", label: "Projects" },
+      { id: "events", label: "Events" },
+      { id: "contact", label: "Contact" },
     ],
   },
 ] as const;
@@ -33,12 +35,12 @@ const locales = [
 async function expectSectionBelowHeader(page: Page, id: string) {
   const headerHeight = await page.locator("header").first().evaluate((el) => el.getBoundingClientRect().height);
   await expect
-    .poll(async () => page.locator(`section#${id}`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
+    .poll(async () => page.locator(`section#${id}:visible`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
     .toBeGreaterThanOrEqual(Math.floor(headerHeight) - 1);
   await expect
-    .poll(async () => page.locator(`section#${id}`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
+    .poll(async () => page.locator(`section#${id}:visible`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
     .toBeLessThanOrEqual(Math.ceil(headerHeight) + 2);
-  await expect(page.locator(`section#${id} :is(h1, h2)`)).toBeInViewport();
+  await expect(page.locator(`section#${id}:visible :is(h1, h2)`)).toBeInViewport();
 }
 
 for (const locale of locales) {
@@ -110,6 +112,23 @@ test("a âncora funciona a partir de outra página", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/pt/design");
   await page.getByRole("navigation", { name: "Navegação principal" }).getByRole("link", { name: "Projetos" }).click();
-  await expect(page).toHaveURL(/\/pt#projetos$/);
-  await expectSectionBelowHeader(page, "projetos");
+  await expect(page).toHaveURL(/\/pt#projects$/);
+  await expectSectionBelowHeader(page, "projects");
+});
+
+test("trocar de idioma preserva a seção atual", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/pt#projects");
+  await expectSectionBelowHeader(page, "projects");
+  await page.getByRole("navigation", { name: "Idioma" }).getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en#projects$/);
+  await expectSectionBelowHeader(page, "projects");
+});
+
+test("as seis seções do briefing existem na Home, cada uma com título", async ({ page }) => {
+  await page.goto("/pt");
+  for (const id of ["hero", "about", "experience", "projects", "events", "contact"]) {
+    await expect(page.locator(`section#${id}:visible :is(h1, h2)`).first()).toBeVisible();
+  }
+  await expect(page.locator("h1")).toHaveCount(1);
 });

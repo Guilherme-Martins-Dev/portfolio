@@ -16,11 +16,11 @@ export function Projects() {
 
   return (
     <HomeSection
-      id="projetos"
-      aria-labelledby="projetos-titulo"
+      id="projects"
+      aria-labelledby="projects-titulo"
       className="mx-auto flex min-h-[80svh] w-full max-w-6xl flex-col justify-center gap-10 px-4 py-16 sm:px-6"
     >
-      <h2 id="projetos-titulo" className="font-display text-4xl sm:text-5xl">
+      <h2 id="projects-titulo" className="font-display text-4xl sm:text-5xl">
         {t("projects")}
       </h2>
       <ProjectGroup id="projetos-concluidos" title={tProjects("completed")} projects={completed} />

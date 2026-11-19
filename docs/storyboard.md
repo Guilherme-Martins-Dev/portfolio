@@ -211,4 +211,4 @@ A infraestrutura comum (Lenis, registro dos plugins do GSAP, `matchMedia`, botã
 
 - **P06 (conceito da cena 3D):** este documento assume o núcleo digital / rede de nós, a recomendação da pesquisa.
 - **Competências na Home:** a [D04](decisoes.md) lista a Home sem um capítulo de Competências, mas o [§4.8](pesquisa/04-3d-e-scroll.md#48-storyboard-sugerido-navegação-híbrida) e a #22 o incluem. Este storyboard segue o §4.8 e põe Competências entre Projetos e Trajetória; se o Guilherme preferir, o capítulo pode ir para a página Sobre sem mudar os demais.
-- **Ids das âncoras:** os ids em português (`#inicio`, `#sobre`...) são uma sugestão; a #14 define os definitivos, inclusive se mudam por idioma.
+- **Ids das âncoras (definitivos, fase 0):** `#hero`, `#about`, `#experience`, `#projects`, `#events`, `#contact`, iguais nos dois idiomas. Os indicadores são uma faixa dentro de `#about`, sem id próprio; Experiência e Eventos são seções separadas. Os `#inicio`, `#sobre`, `#indicadores` e `#trajetoria` citados acima são os nomes antigos.

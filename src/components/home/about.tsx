@@ -1,11 +1,12 @@
+import type { ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { HomeSection } from "@/components/layout/home-section";
 import { profile } from "@/content";
 import { getFocusAreas } from "@/lib/home-data";
 
-/** Sobre: bio e áreas de foco. Campo vazio não aparece (D08). */
-export function About() {
+/** Sobre: bio, áreas de foco e, como `children`, a faixa de indicadores. Campo vazio não aparece (D08). */
+export function About({ children }: { children?: ReactNode }) {
   const t = useTranslations("Sections");
   const tAreas = useTranslations("Areas");
   const tAbout = useTranslations("About");
@@ -14,11 +15,11 @@ export function About() {
 
   return (
     <HomeSection
-      id="sobre"
-      aria-labelledby="sobre-titulo"
+      id="about"
+      aria-labelledby="about-titulo"
       className="mx-auto flex min-h-[80svh] w-full max-w-6xl flex-col justify-center gap-6 px-4 py-16 sm:px-6"
     >
-      <h2 id="sobre-titulo" className="font-display text-4xl sm:text-5xl">
+      <h2 id="about-titulo" className="font-display text-4xl sm:text-5xl">
         {t("about")}
       </h2>
       {/* TODO(guilherme): bio em src/content/profile.ts. */}
@@ -37,6 +38,7 @@ export function About() {
           </ul>
         </div>
       )}
+      {children}
     </HomeSection>
   );
 }
