@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { HomeSection } from "@/components/layout/home-section";
+import { ParallaxList } from "@/components/motion/parallax-list";
 import type { Project } from "@/lib/schemas";
 import { getHomeProjects } from "@/lib/home-data";
 import { ProjectCard } from "./project-card";
@@ -37,11 +38,11 @@ function ProjectGroup({ id, title, projects }: { id: string; title: string; proj
       <h3 id={id} className="font-mono text-sm uppercase tracking-wide text-muted-foreground">
         {title}
       </h3>
-      <ul aria-labelledby={id} className="grid gap-6 md:grid-cols-2">
+      <ParallaxList aria-labelledby={id} className="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
-      </ul>
+      </ParallaxList>
     </div>
   );
 }
