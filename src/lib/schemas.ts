@@ -96,6 +96,26 @@ export const experienceSchema = z
   .strict();
 export type Experience = z.infer<typeof experienceSchema>;
 
+/** Tipo de estudo: formação acadêmica, curso livre ou certificação. */
+export const studyKind = z.enum(["formacao", "curso", "certificacao"]);
+export type StudyKind = z.infer<typeof studyKind>;
+
+export const studySchema = z
+  .object({
+    id: slug,
+    kind: studyKind,
+    title: localizedText,
+    institution: z.string().trim().min(1),
+    start: isoDate.optional(),
+    /** Conclusão (ou data de emissão do certificado). Sem `end` e com `start`: em andamento. */
+    end: isoDate.optional(),
+    description: localizedText.optional(),
+    technologies: z.array(slug).default([]),
+    links: links.default({}),
+  })
+  .strict();
+export type Study = z.infer<typeof studySchema>;
+
 export const profileSchema = z
   .object({
     name: z.string().trim().min(1),

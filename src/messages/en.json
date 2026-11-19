@@ -123,5 +123,62 @@
     "description": "This address does not exist or the content has not been published yet.",
     "home": "Back to home",
     "projects": "See the projects"
+  },
+  "Pages": {
+    "present": "present",
+    "presentStudy": "in progress",
+    "technologies": "Technologies"
+  },
+  "AboutPage": {
+    "title": "About",
+    "lead": "Who Guilherme Martins Bezerra is, the focus areas and the technologies in use.",
+    "pending": "The full introduction is being prepared.",
+    "focusAreas": "Focus areas",
+    "technologies": "Technologies by area",
+    "location": "Location",
+    "seeProjects": "See the projects",
+    "contact": "Get in touch"
+  },
+  "ExperiencePage": {
+    "title": "Experience",
+    "lead": "Professional experience, from the most recent to the oldest.",
+    "empty": "Professional experience is being added."
+  },
+  "EventsPage": {
+    "title": "Events",
+    "lead": "Events attended, and events organized or supported.",
+    "participation": "Participation",
+    "organization": "Organization and collaboration",
+    "emptyParticipation": "Events attended are being added.",
+    "emptyOrganization": "Events organized or supported are being added.",
+    "relatedProject": "Related project",
+    "links": {
+      "devpost": "Devpost",
+      "photos": "Photos",
+      "certificate": "Certificate",
+      "repository": "Repository",
+      "demo": "View online"
+    }
+  },
+  "StudiesPage": {
+    "title": "Studies",
+    "lead": "Academic background, courses and certifications.",
+    "empty": "Academic background, courses and certifications are being added.",
+    "certificate": "View certificate"
+  },
+  "StudyKind": {
+    "formacao": "Degree",
+    "curso": "Course",
+    "certificacao": "Certification"
+  },
+  "ContactPage": {
+    "title": "Contact",
+    "lead": "Want to talk about a project, an opportunity or an event? Pick the channel you prefer.",
+    "email": "Email",
+    "copy": "Copy email",
+    "copied": "Email copied",
+    "copyFailed": "Couldn't copy. Select the address and copy it manually.",
+    "profiles": "Profiles",
+    "empty": "Contact channels are being set up."
   }
 }
