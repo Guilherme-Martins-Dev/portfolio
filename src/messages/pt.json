@@ -123,5 +123,62 @@
     "description": "O endereço não existe ou o conteúdo ainda não foi publicado.",
     "home": "Voltar ao início",
     "projects": "Ver os projetos"
+  },
+  "Pages": {
+    "present": "atual",
+    "presentStudy": "em andamento",
+    "technologies": "Tecnologias"
+  },
+  "AboutPage": {
+    "title": "Sobre",
+    "lead": "Quem é Guilherme Martins Bezerra, em que áreas atua e com quais tecnologias trabalha.",
+    "pending": "A apresentação completa está sendo preparada.",
+    "focusAreas": "Áreas de foco",
+    "technologies": "Tecnologias por área",
+    "location": "Localização",
+    "seeProjects": "Ver os projetos",
+    "contact": "Entrar em contato"
+  },
+  "ExperiencePage": {
+    "title": "Experiência",
+    "lead": "Experiência profissional, da mais recente para a mais antiga.",
+    "empty": "As experiências profissionais estão sendo cadastradas."
+  },
+  "EventsPage": {
+    "title": "Eventos",
+    "lead": "Eventos com participação e eventos organizados ou apoiados.",
+    "participation": "Participação",
+    "organization": "Organização e colaboração",
+    "emptyParticipation": "Os eventos de que participou estão sendo cadastrados.",
+    "emptyOrganization": "Os eventos que organizou ou apoiou estão sendo cadastrados.",
+    "relatedProject": "Projeto relacionado",
+    "links": {
+      "devpost": "Devpost",
+      "photos": "Fotos",
+      "certificate": "Certificado",
+      "repository": "Repositório",
+      "demo": "Ver online"
+    }
+  },
+  "StudiesPage": {
+    "title": "Estudos",
+    "lead": "Formação acadêmica, cursos e certificações.",
+    "empty": "A formação, os cursos e as certificações estão sendo cadastrados.",
+    "certificate": "Ver certificado"
+  },
+  "StudyKind": {
+    "formacao": "Formação",
+    "curso": "Curso",
+    "certificacao": "Certificação"
+  },
+  "ContactPage": {
+    "title": "Contato",
+    "lead": "Quer conversar sobre um projeto, uma oportunidade ou um evento? Escolha o canal que preferir.",
+    "email": "E-mail",
+    "copy": "Copiar e-mail",
+    "copied": "E-mail copiado",
+    "copyFailed": "Não foi possível copiar. Selecione o endereço e copie manualmente.",
+    "profiles": "Perfis",
+    "empty": "Os canais de contato estão sendo preparados."
   }
 }
