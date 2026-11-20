@@ -20,6 +20,10 @@
   "ThemeToggle": {
     "label": "Toggle light/dark theme"
   },
+  "ReduceMotion": {
+    "label": "Reduce effects",
+    "system": "Reduce effects (your system already asks for reduced motion)"
+  },
   "Layout": {
     "skipToContent": "Skip to content",
     "openMenu": "Open menu",
