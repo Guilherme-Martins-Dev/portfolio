@@ -41,3 +41,20 @@ describe("arquitetura da cena (briefing)", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe("arquitetura do movimento (#19)", () => {
+  it("gsap, ScrollTrigger e @gsap/react só são importados em src/motion/gsap.ts", () => {
+    const offenders = files
+      .filter((file) => file.path !== "motion/gsap.ts")
+      .filter((file) => /from\s+["'](gsap|gsap\/[^"']*|@gsap\/[^"']*)["']/.test(file.text))
+      .map((file) => file.path);
+    expect(offenders).toEqual([]);
+  });
+
+  it("não há Lenis nem outro scroll suave que sequestre o scroll nativo (D19 revogada)", () => {
+    const offenders = files
+      .filter((file) => /from\s+["'](lenis|lenis\/[^"']*|@studio-freight\/[^"']*|locomotive-scroll)["']|ScrollSmoother/.test(file.text))
+      .map((file) => file.path);
+    expect(offenders).toEqual([]);
+  });
+});
