@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { LocaleSwitcher } from "@/components/navigation/locale-switcher";
+import { ReduceMotionToggle } from "@/components/shared/reduce-motion-toggle";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./mobile-menu";
@@ -31,6 +32,7 @@ export function SiteHeader() {
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LocaleSwitcher />
+          <ReduceMotionToggle />
           <ThemeToggle />
           <MobileMenu>
             <nav aria-label={tLayout("mobileMenu")} className="flex flex-col gap-6">

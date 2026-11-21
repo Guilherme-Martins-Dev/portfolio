@@ -8,8 +8,11 @@ importers:
 
   .:
     dependencies:
+      '@gsap/react':
+        specifier: 2.1.2
+        version: 2.1.2(gsap@3.15.1)(react@19.3.0)
       '@react-three/fiber':
-        specifier: ^9.8.2
+        specifier: 9.8.2
         version: 9.8.2(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(three@0.187.0)
       class-variance-authority:
         specifier: 0.7.1
@@ -18,7 +21,7 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       gsap:
-        specifier: ^3.15.1
+        specifier: 3.15.1
         version: 3.15.1
       lucide-react:
         specifier: 1.73.0
@@ -45,7 +48,7 @@ importers:
         specifier: 3.7.0
         version: 3.7.0
       three:
-        specifier: ^0.187.0
+        specifier: 0.187.0
         version: 0.187.0
       tw-animate-css:
         specifier: 1.4.0
@@ -73,7 +76,7 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
       '@types/three':
-        specifier: ^0.187.0
+        specifier: 0.187.0
         version: 0.187.0
       eslint:
         specifier: 9.39.5
@@ -655,6 +658,12 @@ packages:
 
   '@formatjs/intl-localematcher@0.8.14':
     resolution: {integrity: sha512-8O7V38QmbB11+ryJ3KM/znrzXtiqgpXzqNoqDsndHZZ5/zDKTTL+cf5F0mzXkQEwhx8IlWnqYvEovf2S5EwLTw==}
+
+  '@gsap/react@2.1.2':
+    resolution: {integrity: sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==}
+    peerDependencies:
+      gsap: ^3.12.5
+      react: '>=17'
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -5330,6 +5339,11 @@ snapshots:
   '@formatjs/intl-localematcher@0.8.14':
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
+
+  '@gsap/react@2.1.2(gsap@3.15.1)(react@19.3.0)':
+    dependencies:
+      gsap: 3.15.1
+      react: 19.3.0
 
   '@humanfs/core@0.19.2':
     dependencies:

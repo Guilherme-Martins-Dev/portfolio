@@ -15,6 +15,22 @@
 
 /* O tema vem do atributo data-theme no <html>, definido pelo script inline do layout. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* motion-safe/motion-reduce também obedecem ao botão "Reduzir efeitos" (atributo data-reduce-motion no <html>). */
+@custom-variant motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    &:where(:root:not([data-reduce-motion]) *) {
+      @slot;
+    }
+  }
+}
+@custom-variant motion-reduce {
+  @media (prefers-reduced-motion: reduce) {
+    @slot;
+  }
+  &:where([data-reduce-motion] *) {
+    @slot;
+  }
+}
 
 /* 1. Primitivos */
 @theme {
@@ -150,6 +166,17 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  /* Mesmo efeito quando a pessoa liga "Reduzir efeitos" no cabeçalho (src/motion/preference.ts). */
+  [data-reduce-motion],
+  [data-reduce-motion] *,
+  [data-reduce-motion] *::before,
+  [data-reduce-motion] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
