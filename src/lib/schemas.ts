@@ -34,11 +34,23 @@ export const technologyAreas = ["frontend", "backend", "ia", "3d", "hardware", "
 export const technologyArea = z.enum(technologyAreas);
 export type TechnologyArea = z.infer<typeof technologyArea>;
 
+export const technologyStatus = z.enum(["usada", "conhecida", "estudo"]);
+export type TechnologyStatus = z.infer<typeof technologyStatus>;
+
 export const technologySchema = z
   .object({
     id: slug,
     name: z.string().trim().min(1),
     area: technologyArea,
+    /** Caminho do SVG em `public/logos/` (só o texto; quem desenha é a interface). */
+    logo: z
+      .string()
+      .regex(/^\/logos\/[a-z0-9-]+\.svg$/, "use /logos/<nome>.svg")
+      .optional(),
+    /** Nível real de uso. Só preencher com o que o Guilherme confirmar. */
+    status: technologyStatus.optional(),
+    /** Ganha objeto em destaque na cena 3D. */
+    destaque: z.boolean().optional(),
   })
   .strict();
 export type Technology = z.infer<typeof technologySchema>;
