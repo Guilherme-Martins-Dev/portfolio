@@ -7,7 +7,7 @@ import { getFocusAreas } from "@/lib/home-data";
 import { pageMetadata } from "@/lib/page-metadata";
 import { groupTechnologies } from "@/lib/pages";
 
-export const generateMetadata = () => pageMetadata("AboutPage");
+export const generateMetadata = () => pageMetadata("AboutPage", "/sobre");
 
 const linkClass =
   "rounded-sm text-link underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring";
