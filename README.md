@@ -54,6 +54,8 @@ pnpm start         # serve o build
 
 Variáveis de ambiente: copie `.env.example` para `.env.local` quando houver alguma. Nunca versione `.env*`.
 
+**Formulário de contato.** Ele só aparece em `/contato` quando `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY` e `TURNSTILE_SECRET_KEY` estão definidas (na Vercel, #29). Sem elas a página mostra só o e-mail e os perfis. `CONTACT_FROM_EMAIL` é opcional: sem ela o remetente é o `onboarding@resend.dev`, que só entrega para o e-mail da conta Resend; em produção use um endereço do domínio verificado no Resend. Para testar localmente sem resolver captcha, use as chaves de teste do Turnstile que a documentação do Cloudflare publica.
+
 ## Licença
 
 O **código** deste repositório está sob a licença MIT ([LICENSE](LICENSE)). O **conteúdo** (textos, fotos, marca e identidade visual de Guilherme Martins Bezerra) tem todos os direitos reservados e não pode ser reutilizado sem autorização.
