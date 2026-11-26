@@ -82,3 +82,15 @@ test("contato: e-mail selecionável, botão copiar e perfis só quando cadastrad
   await expect(page.getByRole("status")).toHaveText("E-mail copiado");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(address);
 });
+
+test("contato: sem as variáveis do formulário (#26), não há formulário e nada quebra", async ({ page }) => {
+  test.skip(
+    !!(process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && process.env.TURNSTILE_SECRET_KEY),
+    "o build foi feito com o formulário ligado",
+  );
+  const response = await page.goto("/pt/contato");
+  expect(response?.status()).toBe(200);
+  await expect(page.locator("[data-contact-form]")).toHaveCount(0);
+  await expect(page.locator("[data-turnstile]")).toHaveCount(0);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Contato");
+});
