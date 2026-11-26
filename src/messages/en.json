@@ -186,6 +186,36 @@
     "copied": "Email copied",
     "copyFailed": "Couldn't copy. Select the address and copy it manually.",
     "profiles": "Profiles",
-    "empty": "Contact channels are being set up."
+    "empty": "Contact channels are being set up.",
+    "form": "Message",
+    "formLead": "Or write to me right here. The reply goes to the email you provide."
+  },
+  "ContactForm": {
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "submit": "Send message",
+    "sending": "Sending…",
+    "honeypot": "Leave this field empty",
+    "errors": {
+      "nameRequired": "Please enter your name.",
+      "nameTooLong": "The name is too long.",
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Please enter a valid email, like name@example.com.",
+      "messageRequired": "Please write your message.",
+      "messageTooShort": "The message must be at least {min} characters long.",
+      "messageTooLong": "The message is too long."
+    },
+    "status": {
+      "success": "Message sent. Thanks for reaching out!",
+      "captcha": "The anti-spam check could not be confirmed. Please try again.",
+      "captchaMissing": "Wait for the anti-spam check to finish and send again.",
+      "widgetFailed": "The anti-spam check did not load. Feel free to use the email above.",
+      "rateLimited": "Too many attempts in a short time. Wait a few minutes and try again.",
+      "error": "The message could not be sent right now. Try again later or use the email above.",
+      "unavailable": "The form is unavailable right now. Please use the email above."
+    }
   }
 }
