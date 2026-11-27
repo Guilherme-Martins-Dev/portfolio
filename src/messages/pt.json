@@ -189,6 +189,36 @@
     "copied": "E-mail copiado",
     "copyFailed": "Não foi possível copiar. Selecione o endereço e copie manualmente.",
     "profiles": "Perfis",
-    "empty": "Os canais de contato estão sendo preparados."
+    "empty": "Os canais de contato estão sendo preparados.",
+    "form": "Mensagem",
+    "formLead": "Ou escreva direto por aqui. A resposta chega no e-mail que você informar."
+  },
+  "ContactForm": {
+    "fields": {
+      "name": "Nome",
+      "email": "E-mail",
+      "message": "Mensagem"
+    },
+    "submit": "Enviar mensagem",
+    "sending": "Enviando…",
+    "honeypot": "Deixe este campo em branco",
+    "errors": {
+      "nameRequired": "Informe seu nome.",
+      "nameTooLong": "O nome está longo demais.",
+      "emailRequired": "Informe seu e-mail.",
+      "emailInvalid": "Informe um e-mail válido, como nome@exemplo.com.",
+      "messageRequired": "Escreva sua mensagem.",
+      "messageTooShort": "A mensagem precisa ter pelo menos {min} caracteres.",
+      "messageTooLong": "A mensagem está longa demais."
+    },
+    "status": {
+      "success": "Mensagem enviada. Obrigado pelo contato!",
+      "captcha": "Não foi possível confirmar a verificação anti-spam. Tente de novo.",
+      "captchaMissing": "Aguarde a verificação anti-spam terminar e envie de novo.",
+      "widgetFailed": "A verificação anti-spam não carregou. Use o e-mail acima, se preferir.",
+      "rateLimited": "Muitas tentativas em pouco tempo. Espere alguns minutos e tente de novo.",
+      "error": "Não foi possível enviar agora. Tente mais tarde ou use o e-mail acima.",
+      "unavailable": "O formulário está indisponível no momento. Use o e-mail acima."
+    }
   }
 }

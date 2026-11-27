@@ -56,6 +56,8 @@ Variáveis de ambiente: copie `.env.example` para `.env.local` quando houver alg
 
 `NEXT_PUBLIC_SITE_URL` (ex.: `https://seu-dominio`) define a URL base do canonical, do hreflang, do `sitemap.xml`, do `robots.txt` e das imagens Open Graph. Em produção ela precisa estar definida na Vercel; sem ela as URLs saem com `http://localhost:3000`.
 
+**Formulário de contato.** Ele só aparece em `/contato` quando `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY` e `TURNSTILE_SECRET_KEY` estão definidas (na Vercel, #29). Sem elas a página mostra só o e-mail e os perfis. `CONTACT_FROM_EMAIL` é opcional: sem ela o remetente é o `onboarding@resend.dev`, que só entrega para o e-mail da conta Resend; em produção use um endereço do domínio verificado no Resend. Para testar localmente sem resolver captcha, use as chaves de teste do Turnstile que a documentação do Cloudflare publica.
+
 ## Analytics
 
 O site usa o [Vercel Web Analytics](https://vercel.com/docs/analytics) e o [Speed Insights](https://vercel.com/docs/speed-insights) (decisão P04), montados em `src/components/shared/vercel-insights.tsx`. Eles só carregam no deploy de **produção** da Vercel (`VERCEL_ENV=production`): nada é enviado em `pnpm dev`, nos previews nem num `pnpm start` local.
