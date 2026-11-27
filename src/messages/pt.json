@@ -1,6 +1,9 @@
 {
   "Metadata": {
-    "title": "Guilherme Martins Bezerra"
+    "title": "Guilherme Martins Bezerra",
+    "description": "Portfólio de Guilherme Martins Bezerra: projetos, experiência, eventos e estudos.",
+    "ogTagline": "Projetos, experiência, eventos e estudos",
+    "ogAlt": "Guilherme Martins Bezerra: portfólio"
   },
   "Navigation": {
     "label": "Navegação principal",

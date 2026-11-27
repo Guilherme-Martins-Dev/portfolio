@@ -5,13 +5,15 @@ import { notFound } from "next/navigation";
 
 import { StatusBadge } from "@/components/home/status-badge";
 import { MDXContent } from "@/components/mdx/mdx-content";
-import { projects } from "@/content";
+import { profile, projects } from "@/content";
 import { Link } from "@/i18n/navigation";
 import { htmlLang, routing } from "@/i18n/routing";
 import { getVisibleCaseStudies } from "@/lib/case-studies";
 import { getProjectTechnologies } from "@/lib/home-data";
 import { formatPartialDate } from "@/lib/home-sections";
+import { localizedMetadata } from "@/lib/page-metadata";
 import { caseStudyPage, NOT_FOUND_SLUG } from "@/lib/projects-catalog";
+import { creativeWorkJsonLd, jsonLdScript, localizedUrl } from "@/lib/seo";
 
 const linkClass =
   "rounded-sm text-link underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring";
@@ -43,7 +45,12 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/projetos
   const tMeta = await getTranslations("Metadata");
   // No fallback o resumo do projeto (projects.ts) existe nos dois idiomas; o do MDX, só no idioma do arquivo.
   const description = data.fallback ? data.project.summary[data.locale] : data.study.summary;
-  return { title: `${data.study.title} · ${tMeta("title")}`, description };
+  return localizedMetadata("/projetos/[slug]", {
+    title: `${data.study.title} · ${tMeta("title")}`,
+    description,
+    slug: data.project.slug,
+    type: "article",
+  });
 }
 
 export default async function CaseStudyPage({ params }: PageProps<"/[locale]/projetos/[slug]">) {
@@ -60,9 +67,24 @@ export default async function CaseStudyPage({ params }: PageProps<"/[locale]/pro
   ].filter((link) => !!link);
   // Com fallback, o texto do MDX está no outro idioma: o `lang` vai no bloco para leitores de tela.
   const contentLang = fallback ? htmlLang[study.locale] : undefined;
+  // Dados estruturados CreativeWork (#24); o repositório de projeto confidencial não entra.
+  const creativeWork = creativeWorkJsonLd(
+    {
+      name: study.title,
+      description: fallback ? project.summary[locale] : study.summary,
+      url: localizedUrl("/projetos/[slug]", locale, { slug: project.slug }),
+      inLanguage: htmlLang[study.locale],
+      dateModified: study.updatedAt?.slice(0, 10),
+      keywords: stack,
+      codeRepository: project.confidential ? undefined : project.links.repository,
+      demo: project.links.demo,
+    },
+    profile.name,
+  );
 
   return (
     <article className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-16 sm:px-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(creativeWork) }} />
       <nav aria-label={t("breadcrumb")}>
         <Link href="/projetos" className={linkClass}>
           ← {t("back")}

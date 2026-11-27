@@ -2,16 +2,20 @@ import { useGSAP } from "@gsap/react";
 import type { RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 import { NO_PREFERENCE_QUERY, REDUCED_MOTION_QUERY } from "./preference";
 import { useUserReduceMotion } from "./use-reduced-motion";
 
-// Registro único dos plugins do GSAP. Sempre importe gsap, ScrollTrigger e useGSAP daqui.
+// Registro único dos plugins do GSAP. Sempre importe gsap, ScrollTrigger, SplitText e useGSAP daqui.
 // O ScrollTrigger lê o scroll NATIVO: sem Lenis nem scroll suave que o sequestre (D19 revogada).
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
-export { gsap, ScrollTrigger, useGSAP };
+export { gsap, ScrollTrigger, SplitText, useGSAP };
 export { scrollTriggerVars, tweenVars } from "./motion-vars";
+
+/** Tela larga o bastante para pin e parallax (no celular, tudo vertical e sem pin). */
+export const DESKTOP = "(min-width: 768px)";
 
 type Scope = RefObject<Element | null> | Element | string;
 

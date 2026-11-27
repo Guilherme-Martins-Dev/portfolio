@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { HomeSection } from "@/components/layout/home-section";
+import { RevealLines } from "@/components/motion/reveal-lines";
 import { profile } from "@/content";
 import { getFocusAreas } from "@/lib/home-data";
 
@@ -23,7 +24,7 @@ export function About({ children }: { children?: ReactNode }) {
         {t("about")}
       </h2>
       {/* TODO(guilherme): bio em src/content/profile.ts. */}
-      {profile.bio && <p className="max-w-2xl text-lg leading-relaxed">{profile.bio[locale]}</p>}
+      {profile.bio && <RevealLines className="max-w-2xl text-lg leading-relaxed">{profile.bio[locale]}</RevealLines>}
       {focus.length > 0 && (
         <div className="flex flex-col gap-3">
           <h3 className="font-mono text-sm uppercase tracking-wide text-muted-foreground">

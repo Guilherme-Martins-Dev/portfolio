@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 
+import { CountUp } from "@/components/motion/count-up";
 import { getHomeIndicators } from "@/lib/home-data";
 
 /**
@@ -23,9 +24,9 @@ function IndicatorsView({ indicators }: { indicators: { key: string; value: numb
         {t("stats")}
       </h3>
       <ul aria-labelledby="about-indicadores" className="grid grid-cols-2 gap-6 md:grid-cols-4">
-        {indicators.map((indicator) => (
+        {indicators.map((indicator, index) => (
           <li key={indicator.key} className="flex flex-col gap-1">
-            <span className="font-display text-5xl">{indicator.value}</span>
+            <CountUp value={indicator.value} index={index} className="font-display text-5xl" />
             <span className="text-sm text-muted-foreground">{tStats(indicator.key)}</span>
           </li>
         ))}
