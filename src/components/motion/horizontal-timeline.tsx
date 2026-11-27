@@ -1,9 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { useGSAP } from "@gsap/react";
-
-import { DESKTOP_MOTION_OK, gsap } from "@/motion/gsap";
+import { DESKTOP, gsap, useMotionGSAP } from "@/motion/gsap";
 
 /** Poucos marcos cabem na tela sem rolar para o lado: abaixo disso a lista fica vertical. */
 const MIN_ITEMS = 3;
@@ -19,7 +17,8 @@ const MIN_ITEMS = 3;
 export function HorizontalTimeline({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useMotionGSAP(({ reduce }) => {
+    if (reduce) return;
     const el = root.current;
     const track = el?.firstElementChild as HTMLElement | null;
     // Fixa o bloco interno (data-pin), nunca a <section>: ela é o alvo da âncora (#experience) e o
@@ -28,7 +27,7 @@ export function HorizontalTimeline({ children }: { children: ReactNode }) {
     if (!el || !track || !pinned) return;
     const mm = gsap.matchMedia();
 
-    mm.add(DESKTOP_MOTION_OK, () => {
+    mm.add(DESKTOP, () => {
       if (track.children.length < MIN_ITEMS) return;
       el.classList.add("timeline-h");
 

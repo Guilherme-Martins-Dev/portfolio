@@ -1,9 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-
-import { gsap, MOTION_OK, SplitText } from "@/motion/gsap";
+import { gsap, SplitText, useMotionGSAP } from "@/motion/gsap";
 
 /**
  * Parágrafo que se revela em linhas (storyboard §2). O texto está inteiro no HTML do servidor e
@@ -14,31 +12,25 @@ import { gsap, MOTION_OK, SplitText } from "@/motion/gsap";
 export function RevealLines({ children, className }: { children: string; className?: string }) {
   const root = useRef<HTMLParagraphElement>(null);
 
-  useGSAP(
-    () => {
+  useMotionGSAP(
+    ({ reduce }) => {
       const el = root.current;
-      if (!el) return;
-      const mm = gsap.matchMedia();
-
-      mm.add(MOTION_OK, () => {
-        const split = SplitText.create(el, {
-          type: "lines",
-          mask: "lines",
-          aria: "auto",
-          autoSplit: true,
-          onSplit: (self) =>
-            gsap.from(self.lines, {
-              yPercent: 110,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.12,
-              scrollTrigger: { trigger: el, start: "top 85%", once: true },
-            }),
-        });
-        return () => split.revert();
+      if (!el || reduce) return;
+      const split = SplitText.create(el, {
+        type: "lines",
+        mask: "lines",
+        aria: "auto",
+        autoSplit: true,
+        onSplit: (self) =>
+          gsap.from(self.lines, {
+            yPercent: 110,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.12,
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          }),
       });
-
-      return () => mm.revert();
+      return () => split.revert();
     },
     { dependencies: [children] },
   );

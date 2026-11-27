@@ -1,9 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-
-import { gsap, MOTION_OK, ScrollTrigger } from "@/motion/gsap";
+import { gsap, ScrollTrigger, useMotionGSAP } from "@/motion/gsap";
 
 const SCRAMBLE_SECONDS = 0.3;
 const COUNT_SECONDS = 1.2;
@@ -17,42 +15,36 @@ const COUNT_SECONDS = 1.2;
 export function CountUp({ value, index = 0, className }: { value: number; index?: number; className?: string }) {
   const visible = useRef<HTMLSpanElement>(null);
 
-  useGSAP(
-    () => {
+  useMotionGSAP(
+    ({ reduce }) => {
       const el = visible.current;
-      if (!el) return;
-      const mm = gsap.matchMedia();
-
-      mm.add(MOTION_OK, () => {
-        const digits = String(value).length;
-        const state = { v: 0 };
-        const tween = gsap.to(state, {
-          v: value,
-          duration: COUNT_SECONDS,
-          delay: index * 0.1,
-          ease: "power2.out",
-          paused: true,
-          onUpdate() {
-            el.textContent =
-              tween.time() < SCRAMBLE_SECONDS
-                ? Array.from({ length: digits }, () => Math.floor(Math.random() * 10)).join("")
-                : String(Math.round(state.v));
-          },
-          onComplete() {
-            el.textContent = String(value);
-          },
-        });
-        el.textContent = "0";
-        const trigger = ScrollTrigger.create({ trigger: el, start: "top 80%", once: true, onEnter: () => tween.play() });
-
-        return () => {
-          trigger.kill();
-          tween.kill();
+      if (!el || reduce) return;
+      const digits = String(value).length;
+      const state = { v: 0 };
+      const tween = gsap.to(state, {
+        v: value,
+        duration: COUNT_SECONDS,
+        delay: index * 0.1,
+        ease: "power2.out",
+        paused: true,
+        onUpdate() {
+          el.textContent =
+            tween.time() < SCRAMBLE_SECONDS
+              ? Array.from({ length: digits }, () => Math.floor(Math.random() * 10)).join("")
+              : String(Math.round(state.v));
+        },
+        onComplete() {
           el.textContent = String(value);
-        };
+        },
       });
+      el.textContent = "0";
+      const trigger = ScrollTrigger.create({ trigger: el, start: "top 80%", once: true, onEnter: () => tween.play() });
 
-      return () => mm.revert();
+      return () => {
+        trigger.kill();
+        tween.kill();
+        el.textContent = String(value);
+      };
     },
     { dependencies: [value, index] },
   );

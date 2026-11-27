@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
+import { useReducedMotion } from "@/motion/use-reduced-motion";
 import { chapters, type CameraPose, type WorldState } from "./chapters/chapters";
 import { buildNetwork } from "./network-data";
 import { clamp01, damp, lerp, lerpVec3, lerpWorld, poseFor, segmentState } from "./progress";
@@ -101,7 +102,8 @@ export function NetworkScene({ onLost, route }: { onLost: () => void; route: str
   // Qualidade adaptativa: baixa o DPR se os quadros desenhados durante o scroll ficarem lentos.
   const governor = useMemo(() => createQualityGovernor(viewport.initialDpr), [viewport.initialDpr]);
 
-  const reducedMotion = useMemo(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches, []);
+  // Sistema OU botão "Reduzir efeitos": a cena salta para o capítulo, sem deslizar.
+  const reducedMotion = useReducedMotion();
   useScrollProgress(reducedMotion, route);
 
   const data = useMemo(() => buildNetwork(), []);

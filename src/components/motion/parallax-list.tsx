@@ -1,9 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { useGSAP } from "@gsap/react";
-
-import { DESKTOP_MOTION_OK, gsap } from "@/motion/gsap";
+import { DESKTOP, gsap, useMotionGSAP } from "@/motion/gsap";
 
 /** Deslocamento (px) da coluna que se move: leve, só o bastante para dar profundidade. */
 const SHIFT = 28;
@@ -24,12 +22,13 @@ export function ParallaxList({
 }) {
   const list = useRef<HTMLUListElement>(null);
 
-  useGSAP(() => {
+  useMotionGSAP(({ reduce }) => {
+    if (reduce) return;
     const el = list.current;
     if (!el) return;
     const mm = gsap.matchMedia();
 
-    mm.add(DESKTOP_MOTION_OK, () => {
+    mm.add(DESKTOP, () => {
       const cells = gsap.utils.toArray<HTMLElement>(el.querySelectorAll(":scope > li")).filter((_, i) => i % 2 === 1);
       for (const cell of cells) {
         gsap.fromTo(

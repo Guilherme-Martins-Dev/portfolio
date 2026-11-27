@@ -20,6 +20,10 @@
   "ThemeToggle": {
     "label": "Alternar tema claro/escuro"
   },
+  "ReduceMotion": {
+    "label": "Reduzir efeitos",
+    "system": "Reduzir efeitos (o sistema já pede movimento reduzido)"
+  },
   "Layout": {
     "skipToContent": "Pular para o conteúdo",
     "openMenu": "Abrir menu",
