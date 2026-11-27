@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MAIN_CONTENT_ID } from "@/components/layout/sections";
 import { SkipLink } from "@/components/layout/skip-link";
 import { themeScript } from "@/components/shared/theme-script";
+import { VercelInsights } from "@/components/shared/vercel-insights";
 import { reduceMotionScript } from "@/motion/preference";
 import { SceneLayer } from "@/scene/SceneLayer";
 import { htmlLang, routing } from "@/i18n/routing";
@@ -71,6 +72,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
           </main>
           <SiteFooter />
         </NextIntlClientProvider>
+        <VercelInsights />
       </body>
     </html>
   );
