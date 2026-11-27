@@ -8,7 +8,7 @@ import { getProjectTechnologies } from "@/lib/home-data";
 import { pageMetadata } from "@/lib/page-metadata";
 import { sortExperience } from "@/lib/pages";
 
-export const generateMetadata = () => pageMetadata("ExperiencePage");
+export const generateMetadata = () => pageMetadata("ExperiencePage", "/experiencia");
 
 /** /experiencia (/en/experience): experiências de src/content/experience.ts, as em andamento primeiro. */
 export default function ExperiencePage() {

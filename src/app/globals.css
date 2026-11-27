@@ -204,3 +204,36 @@
     @apply text-link underline underline-offset-4;
   }
 }
+
+/*
+ * Linha do tempo horizontal (storyboard §6). A classe `timeline-h` só é aplicada pelo JS
+ * (HorizontalTimeline), em tela larga e sem movimento reduzido. Fica fora das camadas do Tailwind
+ * de propósito: estilo sem camada vence as utilitárias da <ol> vertical que está em repouso.
+ */
+.timeline-h {
+  overflow-x: clip;
+}
+.timeline-h > ol {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  width: max-content;
+  border-left: 0;
+  border-top: 1px solid var(--color-border);
+  padding-left: 0;
+  padding-top: 1.75rem;
+  will-change: transform;
+}
+.timeline-h > ol > li {
+  flex: none;
+  width: min(22rem, 70vw);
+  /* A rede 3D passa por trás: fundo translúcido garante o contraste do texto. */
+  background: color-mix(in oklab, var(--color-background) 78%, transparent);
+  backdrop-filter: blur(6px);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+.timeline-h > ol > li > span[aria-hidden="true"] {
+  top: -2.2rem;
+  left: 0;
+}

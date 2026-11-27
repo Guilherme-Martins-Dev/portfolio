@@ -6,7 +6,7 @@ import { CopyEmail } from "@/features/contact/copy-email";
 import { getContactLinks } from "@/lib/home-data";
 import { pageMetadata } from "@/lib/page-metadata";
 
-export const generateMetadata = () => pageMetadata("ContactPage");
+export const generateMetadata = () => pageMetadata("ContactPage", "/contato");
 
 /**
  * /contato (/en/contact): e-mail como texto selecionável + botão copiar, LinkedIn e GitHub.

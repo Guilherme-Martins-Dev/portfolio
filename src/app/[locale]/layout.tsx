@@ -14,6 +14,7 @@ import { VercelInsights } from "@/components/shared/vercel-insights";
 import { reduceMotionScript } from "@/motion/preference";
 import { SceneLayer } from "@/scene/SceneLayer";
 import { htmlLang, routing } from "@/i18n/routing";
+import { siteUrl } from "@/lib/seo";
 import "../globals.css";
 
 // Tipografia de 05-marca §5.2 (opção A): serifa editorial nos títulos, Geist no corpo, Geist Mono no técnico.
@@ -40,7 +41,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
-  return { title: t("title") };
+  // metadataBase: as URLs relativas (imagem OG gerada por idioma) viram absolutas (#24).
+  return { metadataBase: new URL(siteUrl()), title: t("title"), description: t("description") };
 }
 
 export default async function LocaleLayout({ children }: LayoutProps<"/[locale]">) {
