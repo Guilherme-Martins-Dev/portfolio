@@ -56,4 +56,4 @@ Cada decisão traz a origem (**PDF**, o planejamento original, ou **Pesquisa**, 
 | P03 | Formulário de contato | Server Action + Resend + Zod + Turnstile × só links/e-mail | [07-qualidade](pesquisa/07-qualidade.md) |
 | P04 | Analytics | Vercel Web Analytics × Umami | [07-qualidade](pesquisa/07-qualidade.md) |
 | P05 | Fontes definitivas | Instrument Serif ou Fraunces + Geist + Geist Mono | [05-marca](pesquisa/05-marca.md) |
-| P06 | Conceito da cena 3D do Hero | Núcleo digital/rede neural (recomendado) × outros | [04-3d-e-scroll](pesquisa/04-3d-e-scroll.md) |
+| P06 | Conceito da cena 3D do Hero | ~~Núcleo digital/rede neural~~ **Revisada (21/11/2026):** Digital Workspace + Tech Ecosystem (placas de vidro com logos oficiais; objetos 3D só nos destaques; câmera guiada por capítulos). Origem: documento de planejamento do Guilherme com o ChatGPT; a rede de nós não agradou. Implementação em #57 e nas duas etapas seguintes | [04-3d-e-scroll](pesquisa/04-3d-e-scroll.md) |
