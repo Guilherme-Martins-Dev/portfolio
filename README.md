@@ -54,6 +54,16 @@ pnpm start         # serve o build
 
 Variáveis de ambiente: copie `.env.example` para `.env.local` quando houver alguma. Nunca versione `.env*`.
 
+## Analytics
+
+O site usa o [Vercel Web Analytics](https://vercel.com/docs/analytics) e o [Speed Insights](https://vercel.com/docs/speed-insights) (decisão P04), montados em `src/components/shared/vercel-insights.tsx`. Eles só carregam no deploy de **produção** da Vercel (`VERCEL_ENV=production`): nada é enviado em `pnpm dev`, nos previews nem num `pnpm start` local.
+
+Para desligar:
+
+- **Sem mexer no código:** defina `DISABLE_VERCEL_INSIGHTS=1` nas variáveis de ambiente do projeto na Vercel e faça um novo deploy (o layout é pré-renderizado, então o valor vale a partir do build).
+- **Só a coleta:** desative Analytics e/ou Speed Insights na aba do projeto no painel da Vercel.
+- **De vez:** remova `<VercelInsights />` de `src/app/[locale]/layout.tsx` e os pacotes `@vercel/analytics` e `@vercel/speed-insights`.
+
 ## Licença
 
 O **código** deste repositório está sob a licença MIT ([LICENSE](LICENSE)). O **conteúdo** (textos, fotos, marca e identidade visual de Guilherme Martins Bezerra) tem todos os direitos reservados e não pode ser reutilizado sem autorização.
