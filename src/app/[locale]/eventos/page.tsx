@@ -10,7 +10,7 @@ import { splitEvents } from "@/lib/pages";
 import { resolveCaseStudy } from "@/lib/projects-catalog";
 import type { PortfolioEvent } from "@/lib/schemas";
 
-export const generateMetadata = () => pageMetadata("EventsPage");
+export const generateMetadata = () => pageMetadata("EventsPage", "/eventos");
 
 const linkClass =
   "rounded-sm text-link underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring";

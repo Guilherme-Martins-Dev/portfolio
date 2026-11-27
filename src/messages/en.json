@@ -1,6 +1,9 @@
 {
   "Metadata": {
-    "title": "Guilherme Martins Bezerra"
+    "title": "Guilherme Martins Bezerra",
+    "description": "Guilherme Martins Bezerra's portfolio: projects, experience, events and studies.",
+    "ogTagline": "Projects, experience, events and studies",
+    "ogAlt": "Guilherme Martins Bezerra: portfolio"
   },
   "Navigation": {
     "label": "Main navigation",

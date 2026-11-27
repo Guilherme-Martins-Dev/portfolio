@@ -4,6 +4,9 @@ import { defineRouting } from "next-intl/routing";
 export const routing = defineRouting({
   locales: ["pt", "en"],
   defaultLocale: "pt",
+  // O hreflang sai só do <head> (generateMetadata, #24). O header `Link` do next-intl usaria
+  // `pt` em vez de `pt-BR` e um x-default sem prefixo (/sobre), divergindo do <head> e do sitemap.
+  alternateLinks: false,
   pathnames: {
     "/": "/",
     "/sobre": { pt: "/sobre", en: "/about" },

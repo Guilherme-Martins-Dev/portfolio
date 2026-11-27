@@ -54,6 +54,8 @@ pnpm start         # serve o build
 
 Variáveis de ambiente: copie `.env.example` para `.env.local` quando houver alguma. Nunca versione `.env*`.
 
+`NEXT_PUBLIC_SITE_URL` (ex.: `https://seu-dominio`) define a URL base do canonical, do hreflang, do `sitemap.xml`, do `robots.txt` e das imagens Open Graph. Em produção ela precisa estar definida na Vercel; sem ela as URLs saem com `http://localhost:3000`.
+
 ## Licença
 
 O **código** deste repositório está sob a licença MIT ([LICENSE](LICENSE)). O **conteúdo** (textos, fotos, marca e identidade visual de Guilherme Martins Bezerra) tem todos os direitos reservados e não pode ser reutilizado sem autorização.

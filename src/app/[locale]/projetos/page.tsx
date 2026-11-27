@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 import { ProjectCard } from "@/components/home/project-card";
 import { projects, technologies } from "@/content";
 import { ProjectFilters } from "@/features/projects/project-filters";
+import { pageMetadata } from "@/lib/page-metadata";
 import { projectFilters, sortProjects } from "@/lib/projects-catalog";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("ProjectsPage");
-  const tMeta = await getTranslations("Metadata");
-  return { title: `${t("title")} · ${tMeta("title")}`, description: t("lead") };
-}
+export const generateMetadata = () => pageMetadata("ProjectsPage", "/projetos");
 
 /** /projetos (/en/projects): todos os projetos de src/content, com filtro por status e tecnologia. */
 export default async function ProjectsPage() {
